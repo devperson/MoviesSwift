@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8F6ECA7F2EE09A7E00747ED1 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 8F6ECA7E2EE09A7E00747ED1 /* Resolver */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		8F7FE6BD2EE061760097A525 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F6ECA7F2EE09A7E00747ED1 /* Resolver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +130,7 @@
 			);
 			name = moviesSwift;
 			packageProductDependencies = (
+				8F6ECA7E2EE09A7E00747ED1 /* Resolver */,
 			);
 			productName = moviesSwift;
 			productReference = 8F7FE6A62EE061740097A525 /* moviesSwift.app */;
@@ -208,6 +214,9 @@
 			);
 			mainGroup = 8F7FE69D2EE061740097A525;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8F6ECA7D2EE09A7E00747ED1 /* XCRemoteSwiftPackageReference "Resolver" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8F7FE6A72EE061740097A525 /* Products */;
 			projectDirPath = "";
@@ -585,6 +594,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8F6ECA7D2EE09A7E00747ED1 /* XCRemoteSwiftPackageReference "Resolver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Resolver";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8F6ECA7E2EE09A7E00747ED1 /* Resolver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F6ECA7D2EE09A7E00747ED1 /* XCRemoteSwiftPackageReference "Resolver" */;
+			productName = Resolver;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8F7FE69E2EE061740097A525 /* Project object */;
 }
