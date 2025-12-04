@@ -2,5 +2,5 @@ import Foundation
 
 protocol IEntity
 {
-    var id: Int { get set }
+    var Id: Int { get set }
 }

@@ -17,29 +17,29 @@ class NavigatingBaseViewModel: BaseViewModel, INavigationAware
 
     func OnNavigatedFrom(_ parameters: INavigationParameters)
     {
-        LogVirtualBaseMethod("OnNavigatedFrom")
+        LogVirtualBaseMethod(#function)
     }
 
     func OnNavigatedTo(_ parameters: INavigationParameters)
     {
-        LogVirtualBaseMethod("OnNavigatedTo")
+        LogVirtualBaseMethod(#function)
     }
 
     func GetCurrentPageViewModel() -> NavigatingBaseViewModel?
     {
-        LogVirtualBaseMethod("GetCurrentPageViewModel")
+        LogVirtualBaseMethod(#function)
         return injectedServices.NavigationService.GetCurrentPageModel()
     }
 
     func Navigate(_ name: String, parameters: INavigationParameters? = nil, useModalNavigation: Bool = false, animated: Bool = true, wrapIntoNav: Bool = false) async
     {
         LogVirtualBaseMethod("Navigate(name=\(name))")
-        await injectedServices.NavigationService.Navigate(name: name, parameters: parameters, useModalNavigation: useModalNavigation, animated: animated, wrapIntoNav: wrapIntoNav)
+        await injectedServices.NavigationService.Navigate(name, parameters: parameters, useModalNavigation: useModalNavigation, animated: animated, wrapIntoNav: wrapIntoNav)
     }
 
     func NavigateToRoot(_ parameters: INavigationParameters? = nil) async
     {
-        LogVirtualBaseMethod("NavigateToRoot")
+        LogVirtualBaseMethod(#function)
         await injectedServices.NavigationService.NavigateToRoot(parameters: parameters)
     }
 
@@ -58,13 +58,13 @@ class NavigatingBaseViewModel: BaseViewModel, INavigationAware
     func NavigateAndMakeRoot(_ name: String, parameters: INavigationParameters? = nil, useModalNavigation: Bool = false, animated: Bool = true) async
     {
         LogVirtualBaseMethod("NavigateAndMakeRoot(name=\(name))")
-        let newRoot = "/NavigationPage/\(name)"
-        await Navigate(name, parameters: parameters, useModalNavigation: useModalNavigation, animated: animated)
+        let newRoot = "/\(name)"
+        await Navigate(newRoot, parameters: parameters, useModalNavigation: useModalNavigation, animated: animated)
     }
 
     func NavigateBack(_ parameters: INavigationParameters? = nil) async
     {
-        LogVirtualBaseMethod("NavigateBack")
+        LogVirtualBaseMethod(#function)
         await Navigate("../", parameters: parameters)
     }
 

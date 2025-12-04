@@ -1,29 +1,32 @@
 import Foundation
 import Resolver
 
+@Observable
 class PageViewModel: NavigatingBaseViewModel, IPageLifecycleAware
 {
-    var InstanceId = UUID()
-    var appResumedEvent: AppResumedEvent!
-    var appPausedEvent: AppPausedEvent!
+    
+    private var appResumedEvent: AppResumedEvent!
+    private var appPausedEvent: AppPausedEvent!
 
     override init(_ injectedService: InjectedService)
     {
         super.init(injectedService)
 
         self.BackCommand = AsyncCommand(OnBackCommand)
-        let appResumedEvent = GetEvent({ AppResumedEvent() })
-        let appPausedEvent = GetEvent({ AppPausedEvent() })
+        appResumedEvent = GetEvent({ AppResumedEvent() })
+        appPausedEvent = GetEvent({ AppPausedEvent() })
         appResumedEvent.Subscribe(InstanceId, ResumedFromBackground(_:))
         appPausedEvent.Subscribe(InstanceId, PausedToBackground(_:))
     }
 
+    var InstanceId = UUID()
     var BackCommand: AsyncCommand!
     var Title: String = ""
     var IsPageVisable: Bool = false
     var IsFirstTimeAppears: Bool = true
     var BusyLoading: Bool = false
     var DisableDeviceBackButton: Bool = false
+    
     let BackgroundScope = AsyncScope
     { block in
 
