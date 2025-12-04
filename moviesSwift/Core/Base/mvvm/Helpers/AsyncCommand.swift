@@ -11,7 +11,7 @@ class AsyncCommand
     private let executeFunc: (Any?) async -> Void
     private let canExecuteFunc: ((Any?) -> Bool)?
 
-    init(executeFunc: @escaping (Any?) async -> Void, canExecuteFunc: ((Any?) -> Bool)? = { _ in
+    init( _ executeFunc: @escaping (Any?) async -> Void, canExecuteFunc: ((Any?) -> Bool)? = { _ in
         true
     })
     {

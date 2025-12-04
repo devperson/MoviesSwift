@@ -2,28 +2,39 @@ import Foundation
 
 open class SubMessage: IMessageEvent
 {
-    private var handlers: [(Any?) -> Void] = []
+    private var handlers: [UUID : (Any?) -> Void] = [:]
     private let queue = DispatchQueue(label: "SimpleMessagingCenter.SubMessage")
 
-    public func Subscribe(_ handler: @escaping (Any?) -> Void)
+    public func Subscribe(_ handler: @escaping (Any?) -> Void) -> UUID
     {
-        queue.sync {
-            // naive contains check; closures can't be equated by value in Swift
-            handlers.append(handler)
+        let id = UUID()
+        queue.sync
+        {            
+            handlers[id] = handler
+        }
+        return id
+    }
+    
+    public func Subscribe(_ id: UUID,  _ handler: @escaping (Any?) -> Void)
+    {
+        queue.sync
+        {
+            handlers[id] = handler
         }
     }
 
-    public func Unsubscribe(_ handler: @escaping (Any?) -> Void)
+    public func Unsubscribe(_ id: UUID)
     {
-        queue.sync {
-            // not straightforward to remove identical closure; left as no-op for now or users should manage tokens
+        _ = queue.sync
+        {
+            handlers.removeValue(forKey: id)
         }
     }
 
     public func Publish(_ args: Any?)
     {
-        let snapshot: [(Any?) -> Void] = queue.sync { handlers }
-        snapshot.forEach { $0(args) }
+        let snapshot = queue.sync { handlers }
+        snapshot.forEach { $0.value(args) }
     }
 }
 

@@ -25,6 +25,19 @@ protocol ILoggingService: ILogging {
     func CreateSpecificLogger(key: String) -> ILogging
 }
 
+extension ILoggingService
+{
+    func LogError(_ ex: Error)
+    {
+        LogError(ex, message: "", handled: true)
+    }
+    
+    func TrackError(_ ex: Error, data: [String: String]? = nil)
+    {
+        TrackError(ex, data: data)
+    }
+}
+
 struct SpecificLoggingKeys {
     static let LogEssentialServices = "LogEssentialServices"
     static let LogUIServices = "LogUIServices"
