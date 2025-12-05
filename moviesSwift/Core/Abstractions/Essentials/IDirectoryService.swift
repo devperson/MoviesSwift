@@ -1,6 +1,7 @@
 import Foundation
 
-protocol IDirectoryService {
+protocol IDirectoryService
+{
     func GetCacheDir() -> String
     func GetAppDataDir() -> String
     func IsExistDir(path: String) -> Bool

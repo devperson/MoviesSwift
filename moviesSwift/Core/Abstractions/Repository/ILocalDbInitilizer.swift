@@ -5,10 +5,10 @@ protocol ILocalDbInitilizer
     var DbsFolderName: String { get }
     var DbExtenstion: String { get }
     var DbName: String { get }
-    func GetDbPath() -> String
-    func GetDbDir() -> String
+    func GetDbPath() throws -> String
+    func GetDbDir() throws -> String
 
-    func GetDbConnection() -> Any
-    func Init() async
-    func Release(closeConnection: Bool)
+    func GetDbConnection() throws -> Any
+    func InitDb() async throws
+    func Release(closeConnection: Bool) async
 }

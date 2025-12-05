@@ -1,6 +1,6 @@
 import Foundation
 
-protocol IRepoMapper
+protocol IRepoMapper<TEntity, Tb>
 {
     associatedtype TEntity: IEntity
     associatedtype Tb: ITable

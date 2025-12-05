@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8F6ECA7F2EE09A7E00747ED1 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 8F6ECA7E2EE09A7E00747ED1 /* Resolver */; };
+		8F9618732EE316B6000434AD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8F9618722EE316B6000434AD /* RealmSwift */; };
+		8F9618742EE316E0000434AD /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8F9618722EE316B6000434AD /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +28,20 @@
 			remoteInfo = moviesSwift;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8F9618752EE316E0000434AD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8F9618742EE316E0000434AD /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8F7FE6A62EE061740097A525 /* moviesSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = moviesSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F9618732EE316B6000434AD /* RealmSwift in Frameworks */,
 				8F6ECA7F2EE09A7E00747ED1 /* Resolver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -120,6 +137,7 @@
 				8F7FE6A22EE061740097A525 /* Sources */,
 				8F7FE6A32EE061740097A525 /* Frameworks */,
 				8F7FE6A42EE061740097A525 /* Resources */,
+				8F9618752EE316E0000434AD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -131,6 +149,7 @@
 			name = moviesSwift;
 			packageProductDependencies = (
 				8F6ECA7E2EE09A7E00747ED1 /* Resolver */,
+				8F9618722EE316B6000434AD /* RealmSwift */,
 			);
 			productName = moviesSwift;
 			productReference = 8F7FE6A62EE061740097A525 /* moviesSwift.app */;
@@ -216,6 +235,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				8F6ECA7D2EE09A7E00747ED1 /* XCRemoteSwiftPackageReference "Resolver" */,
+				8F9618712EE316B6000434AD /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8F7FE6A72EE061740097A525 /* Products */;
@@ -604,6 +624,14 @@
 				minimumVersion = 1.5.1;
 			};
 		};
+		8F9618712EE316B6000434AD /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 20.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -611,6 +639,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8F6ECA7D2EE09A7E00747ED1 /* XCRemoteSwiftPackageReference "Resolver" */;
 			productName = Resolver;
+		};
+		8F9618722EE316B6000434AD /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F9618712EE316B6000434AD /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
