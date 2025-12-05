@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5739ada-4eac-4b1e-8001-fdc316c9760a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift.xcodeproj/project.xcworkspace/xcuserdata/xasan.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift.xcodeproj/project.xcworkspace/xcuserdata/xasan.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/mvvm/Navigation/NavigationParameters.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/mvvm/Navigation/NavigationParameters.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/mvvm/ViewModels/NavigatingBaseViewModel.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/mvvm/ViewModels/NavigatingBaseViewModel.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/mvvm/ViewModels/PageViewModel.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/mvvm/ViewModels/PageViewModel.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Domain/AppServices/IMovieService.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Domain/AppServices/IMovieService.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/ViewModels/AddEditMoviePageViewModel.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/ViewModels/AddEditMoviePageViewModel.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/ViewModels/Base/AppPageViewModel.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/ViewModels/Base/AppPageViewModel.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/ViewModels/Base/PageInjectedServices.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/ViewModels/Base/PageInjectedServices.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/ViewModels/Events/MovieCellItemUpdatedEvent.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/ViewModels/Events/MovieCellItemUpdatedEvent.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/ViewModels/ItemViewModel/MovieItemViewModel.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/ViewModels/ItemViewModel/MovieItemViewModel.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/ViewModels/LoginPageViewModel.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/ViewModels/LoginPageViewModel.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/ViewModels/MovieDetailPageViewModel.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/ViewModels/MovieDetailPageViewModel.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/ViewModels/MoviesPageViewModel.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/ViewModels/MoviesPageViewModel.swift" afterDir="false" />
-    </list>
+    <list default="true" id="a5739ada-4eac-4b1e-8001-fdc316c9760a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
