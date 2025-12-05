@@ -1,5 +1,6 @@
 import Foundation
 
-class MovieCellItemUpdatedEvent: SubMessage {
+class MovieCellItemUpdatedEvent: SubMessage
+{
 
 }

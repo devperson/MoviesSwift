@@ -31,7 +31,7 @@ class NavigatingBaseViewModel: BaseViewModel, INavigationAware
         return injectedServices.NavigationService.GetCurrentPageModel()
     }
 
-    func Navigate(_ name: String, parameters: INavigationParameters? = nil, useModalNavigation: Bool = false, animated: Bool = true, wrapIntoNav: Bool = false) async
+    func Navigate(_ name: String, _ parameters: INavigationParameters? = nil, useModalNavigation: Bool = false, animated: Bool = true, wrapIntoNav: Bool = false) async
     {
         LogVirtualBaseMethod("Navigate(name=\(name))")
         await injectedServices.NavigationService.Navigate(name, parameters: parameters, useModalNavigation: useModalNavigation, animated: animated, wrapIntoNav: wrapIntoNav)
@@ -52,20 +52,20 @@ class NavigatingBaseViewModel: BaseViewModel, INavigationAware
             skip += "../"
         }
         let newRoute = "\(skipCount)\(route)"
-        await Navigate(newRoute, parameters: parameters)
+        await Navigate(newRoute, parameters)
     }
 
     func NavigateAndMakeRoot(_ name: String, parameters: INavigationParameters? = nil, useModalNavigation: Bool = false, animated: Bool = true) async
     {
         LogVirtualBaseMethod("NavigateAndMakeRoot(name=\(name))")
         let newRoot = "/\(name)"
-        await Navigate(newRoot, parameters: parameters, useModalNavigation: useModalNavigation, animated: animated)
+        await Navigate(newRoot, parameters, useModalNavigation: useModalNavigation, animated: animated)
     }
 
     func NavigateBack(_ parameters: INavigationParameters? = nil) async
     {
         LogVirtualBaseMethod(#function)
-        await Navigate("../", parameters: parameters)
+        await Navigate("../", parameters)
     }
 
     func BackToRootAndNavigate(_ name: String, parameters: INavigationParameters? = nil) async
@@ -92,10 +92,10 @@ class NavigatingBaseViewModel: BaseViewModel, INavigationAware
 
         injectedServices.LoggingService.Log("BackToRootAndNavigate(): Current navigation stack: /\(currentNavStack), pop count: \(popCount), resultUri: \(resultUri)")
 
-        await Navigate(resultUri, parameters: parameters)
+        await Navigate(resultUri, parameters)
     }
 
-    fileprivate func GetParameter<T>(_ parameters: INavigationParameters, key: String) -> T?
+    func GetParameter<T>(_ parameters: INavigationParameters, key: String) -> T?
     {
         LogVirtualBaseMethod("GetParameter(key = \(key))")
         if parameters.ContainsKey(key)
@@ -108,7 +108,7 @@ class NavigatingBaseViewModel: BaseViewModel, INavigationAware
         }
     }
 
-    fileprivate func GetParameter<T>(_ parameters: INavigationParameters, key: String, setter: (T?) -> Void)
+    func GetParameter<T>(_ parameters: INavigationParameters, key: String, setter: (T?) -> Void)
     {
         LogVirtualBaseMethod("GetParameter(key = \(key), setter())")
         if parameters.ContainsKey(key)

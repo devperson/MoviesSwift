@@ -1,8 +1,8 @@
 import Foundation
 import Resolver
 
-@objcMembers
-class LoginPageViewModel: AppPageViewModel {
+@objcMembers class LoginPageViewModel: AppPageViewModel
+{
     @LazyInjected var preferenceServices: IPreferences
     static let LogoutRequest = "LogoutRequest"
     static let IsLoggedIn = "IsLoggedIn"
@@ -11,24 +11,28 @@ class LoginPageViewModel: AppPageViewModel {
     var Login: String = ""
     var Password: String = ""
 
-    override init(_ injectedService: PageInjectedServices) {
-        
+    override init(_ injectedService: PageInjectedServices)
+    {
+
         super.init(injectedService)
         self.SubmitCommand = AsyncCommand(OnSubmitCommand)
     }
 
-    override func Initialize(_ parameters: INavigationParameters) {
+    override func Initialize(_ parameters: INavigationParameters)
+    {
         LogMethodStart(#function)
         super.Initialize(parameters)
 
-        if parameters.ContainsKey(LoginPageViewModel.LogoutRequest) {
+        if parameters.ContainsKey(LoginPageViewModel.LogoutRequest)
+        {
             preferenceServices.Set(LoginPageViewModel.IsLoggedIn, false)
         }
     }
 
-    func OnSubmitCommand(_ arg: Any?) async {
+    func OnSubmitCommand(_ arg: Any?) async
+    {
         LogMethodStart(#function)
         preferenceServices.Set(LoginPageViewModel.IsLoggedIn, true)
-        await Services.NavigationService.Navigate("/MoviesPageViewModel")
+        await Services.NavigationService.Navigate("/\(NameOf(MoviesPageViewModel.self))")
     }
 }

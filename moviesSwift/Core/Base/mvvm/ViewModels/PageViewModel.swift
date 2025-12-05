@@ -26,25 +26,7 @@ class PageViewModel: NavigatingBaseViewModel, IPageLifecycleAware
     var IsFirstTimeAppears: Bool = true
     var BusyLoading: Bool = false
     var DisableDeviceBackButton: Bool = false
-    
-    let BackgroundScope = AsyncScope
-    { block in
 
-        try await Task.detached
-        {
-            try await block()
-        }
-        .value
-    }
-
-    let MainThreadScope = AsyncScope
-    { block in
-
-        try await AsyncScope.runOnMain
-        {
-            try await block()
-        }
-    }
 
     func OnAppearing()
     {
@@ -102,7 +84,7 @@ class PageViewModel: NavigatingBaseViewModel, IPageLifecycleAware
 
     func DoDeviceBackCommand()
     {
-        MainThreadScope.run
+        Task
         {
             self.injectedServices.LoggingService.Log("\(String(describing: type(of: self))).DoDeviceBackCommand() (from base)")
             if self.DisableDeviceBackButton
@@ -126,20 +108,22 @@ class PageViewModel: NavigatingBaseViewModel, IPageLifecycleAware
     /// - Executes `asyncAction` on a background scope (`BackgroundScope.await`)
     /// - Ensures the busy flag is cleared automatically using `defer`
     /// - Executes `onComplete` on the main thread (because the method is `@MainActor`)
-    @MainActor func ShowLoading(_ asyncAction: @escaping () async -> Void, onComplete: ((Bool) -> Void)? = nil) async
+    @MainActor
+    func ShowLoading(_ asyncAction: @escaping () async -> Void, onComplete: ((Bool) -> Void)? = nil) async
     {
         LogMethodStart(#function)
         BusyLoading = true
+
+        //await without return value
+        await Task.detached
+        {
+            await asyncAction()   // running in background
+        }.value
+        
         defer
         {
             BusyLoading = false
         }//make sure it is set to false when done
-
-        //await without return value
-        await BackgroundScope.await
-        {
-            await asyncAction()   // background automatically
-        }
 
         onComplete?(true)         // back on MainActor
     }
@@ -156,20 +140,21 @@ class PageViewModel: NavigatingBaseViewModel, IPageLifecycleAware
     /// - Executes `asyncAction` on a background scope
     /// - Returns the computed result
     /// - Ensures the busy flag is cleared even if the method exits early
-    @MainActor func ShowLoadingWithResult<T>(_ asyncAction: @escaping () async -> T, setIsBusy: Bool = true) async throws -> T
+    @MainActor
+    func ShowLoadingWithResult<T>(_ asyncAction: @escaping () async -> T, setIsBusy: Bool = true) async -> T
     {
         LogMethodStart(#function)
         BusyLoading = setIsBusy
+        // get value from asyncAction on background
+        let result: T = await Task.detached
+        {
+            await asyncAction()
+        }.value
+        
         defer
         {
             BusyLoading = false
         }//make sure it is set to false when done
-
-        // get value from asyncAction on background
-        let result: T = await BackgroundScope.await
-        {
-            await asyncAction()
-        }
 
         return result
     }
@@ -187,20 +172,21 @@ class PageViewModel: NavigatingBaseViewModel, IPageLifecycleAware
     /// - Executes the throwing async work on a background scope
     /// - Propagates any errors thrown by `asyncAction`
     /// - Clears the busy flag via `defer`
-    @MainActor func ShowLoadingWithResultThrow<T>(_ asyncAction: @escaping () async throws -> T, setIsBusy: Bool = true) async throws -> T
+    @MainActor
+    func ShowLoadingWithResultThrow<T>(_ asyncAction: @escaping () async throws -> T, setIsBusy: Bool = true) async throws -> T
     {
         LogMethodStart(#function)
         BusyLoading = setIsBusy
+       
+        let result: T = try await Task.detached
+        {
+            try await asyncAction()  // run asyncAction on background
+        }.value
+        
         defer
         {
             BusyLoading = false
         }//make sure it is set to false when done
-
-        // run asyncAction on background
-        let result: T = try await BackgroundScope.await
-        {
-            try await asyncAction()
-        }
 
         return result
     }
@@ -265,99 +251,4 @@ class PageViewModel: NavigatingBaseViewModel, IPageLifecycleAware
         return injectedServices.EventAggregator.GetEvent(factory: factory)
     }
 
-}
-
-struct AsyncScope
-{
-    let executor: (@escaping () async throws -> Any?) async throws -> Any?
-
-    // MARK: Void, non-throwing
-    func await(_ block: @escaping () async -> Void) async
-    {
-        _ = try? await executor
-        {
-            await block()
-            return nil       // <-- normalize Void to nil
-        }
-    }
-
-    // MARK: Void, throwing
-    func await(_ block: @escaping () async throws -> Void) async throws
-    {
-        _ = try await executor
-        {
-            try await block()
-            return nil
-        }
-    }
-
-    // MARK: Non-Void, non-throwing
-    func await<T>(_ block: @escaping () async -> T) async -> T
-    {
-        let result = try? await executor
-        {
-            return await block()
-        } as? T
-        return result!
-    }
-
-    // MARK: Non-Void, throwing
-    func await<T>(_ block: @escaping () async throws -> T) async throws -> T
-    {
-        let result = try await executor
-        {
-            return try await block()
-        } as? T
-        return result!
-    }
-
-    @MainActor
-    static func runOnMain<T>(_ block: @escaping () async throws -> T) async throws -> T
-    {
-        try await Task
-        { @MainActor in
-            try await block()
-        }
-        .value
-    }
-}
-
-extension AsyncScope
-{
-
-    // MARK: Non-async entry — fire & forget
-    func run(_ block: @escaping () async -> Void)
-    {
-        Task
-        {
-            await self.await(block)
-        }
-    }
-
-    // MARK: Non-async entry — fire & forget but can throw
-    func run(_ block: @escaping () async throws -> Void)
-    {
-        Task
-        {
-            try? await self.await(block)
-        }
-    }
-
-    // MARK: Non-async entry with return value (ignored)
-    func run<T>(_ block: @escaping () async -> T)
-    {
-        Task
-        {
-            _ = await self.await(block)
-        }
-    }
-
-    // MARK: Non-async entry with return & throwing (ignored)
-    func run<T>(_ block: @escaping () async throws -> T)
-    {
-        Task
-        {
-            _ = try? await self.await(block)
-        }
-    }
 }

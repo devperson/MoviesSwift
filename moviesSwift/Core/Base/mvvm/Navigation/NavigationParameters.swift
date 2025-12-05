@@ -27,7 +27,8 @@ class NavigationParameters: INavigationParameters
     }
 
     //doesn't force to use the return value (if dev skip the value the warning will not shown)
-    @discardableResult func With(_ key: String, _ value: Any?) -> NavigationParameters
+    @discardableResult
+    func With(_ key: String, _ value: Any?) -> NavigationParameters
     {
         Add(key: key, value: value)
         return self
