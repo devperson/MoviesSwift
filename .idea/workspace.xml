@@ -6,13 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a5739ada-4eac-4b1e-8001-fdc316c9760a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/moviesSwift.xcodeproj/project.xcworkspace/xcuserdata/xasan.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift.xcodeproj/project.xcworkspace/xcuserdata/xasan.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/Essentials/IDirectoryService.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/Essentials/IDirectoryService.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/Repository/ILocalDbInitilizer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/Repository/ILocalDbInitilizer.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/Repository/IRepoMapper.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/Repository/IRepoMapper.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/Repository/IRepository.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/Repository/IRepository.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/Diagnostic/IErrorTrackingService.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/Diagnostic/IErrorTrackingService.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Diagnostic/LoggableService.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Diagnostic/LoggableService.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Domain/Infrustructuries/IMovieRestService.swift" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

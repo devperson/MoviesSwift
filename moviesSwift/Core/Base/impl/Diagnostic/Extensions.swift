@@ -7,7 +7,7 @@ extension Array
         var sb = "List[\(self.count)] "
         for item in self
         {
-            sb += "\(item), "
+            sb.append("\(item), ")
         }
         return sb
     }

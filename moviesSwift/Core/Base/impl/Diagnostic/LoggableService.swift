@@ -26,7 +26,11 @@ class LoggableService
     // MARK: - Specific Logging
     func SpecificLogMethodStart(_ methodName: String, _ args: Any?...)
     {
-        guard let specificLogger else { return }
+        guard let specificLogger
+        else
+        {
+            return
+        }
         let className = String(describing: type(of: self))
         specificLogger.LogMethodStarted(className: className, methodName: methodName, args: args)
     }
