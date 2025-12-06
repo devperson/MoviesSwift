@@ -1,18 +1,33 @@
+//
+//  AlertArguments.swift
+//  moviesSwift
+//
+//  Created by xasan on 06/12/25.
+//
+
 
 import Foundation
 
-struct AlertArguments
-{
-    let Title: String?
-    let Message: String?
-    let Accept: String?
-    let Cancel: String?
-}
+// Reuse the same TaskCompletionSource<T> from previous example
 
-//func displayAlert(_ args: AlertArguments) async -> Bool {
-//    await withCheckedContinuation { continuation in
-//        showAlert(args) { result in
-//            continuation.resume(returning: result)
-//        }
-//    }
-//}
+final class AlertArguments {
+
+    private(set) var accept: String?
+    private(set) var cancel: String?
+    private(set) var message: String?
+    private(set) var title: String?
+
+    let result: TaskCompletionSource<Bool>
+
+    init(title: String?, message: String?, accept: String?, cancel: String?) {
+        self.title = title
+        self.message = message
+        self.accept = accept
+        self.cancel = cancel
+        self.result = TaskCompletionSource<Bool>()
+    }
+
+    func setResult(_ value: Bool) {
+        result.setResult(value)
+    }
+}
