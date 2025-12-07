@@ -5,30 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5739ada-4eac-4b1e-8001-fdc316c9760a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/moviesSwift.xcodeproj/project.xcworkspace/xcuserdata/xasan.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift.xcodeproj/project.xcworkspace/xcuserdata/xasan.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/REST/Exceptions/AuthExpiredException.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/REST/Exceptions/AuthExpiredException.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/REST/Exceptions/HttpConnectionException.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/REST/Exceptions/HttpConnectionException.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/REST/Exceptions/HttpRequestException.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/REST/Exceptions/HttpRequestException.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/REST/Exceptions/ServerApiException.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/REST/Exceptions/ServerApiException.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/REST/IRestClient.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/REST/IRestClient.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Common/TaskCompletionSource.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Common/TaskCompletionSource.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Common/Timer.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/ContainerLocator.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/ContainerLocator.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Diagnostic/AppLogExporter.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Diagnostic/AppLogExporter.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Diagnostic/AppLoggingService.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Diagnostic/AppLoggingService.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Diagnostic/LoggableService.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Diagnostic/LoggableService.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Diagnostic/VersionTrackingImplementation.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Diagnostic/VersionTrackingImplementation.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/REST/AuthTokenService.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/REST/AuthTokenService.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/REST/RequestQueueItem.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/REST/RequestQueueItem.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/REST/RequestQueueList.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/REST/RequestQueueList.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/REST/RestClient.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/REST/RestService.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Repository/BaseRepository.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Repository/BaseRepository.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/UI/ActionSheetArguments.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/UI/ActionSheetArguments.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/UI/AlertArguments.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/UI/AlertArguments.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/UI/SnackbarColors.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/UI/SnackbarColors.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/mvvm/ViewModels/PageViewModel.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/mvvm/ViewModels/PageViewModel.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
