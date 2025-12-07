@@ -8,7 +8,7 @@ class AppLogExporter: LoggableService, IAppLogExporter
 
     private let KyChat_Logs = "KyChat_Logs"
 
-    
+
     func ShareLogs() async -> LogSharingResult
     {
         LogMethodStart(#function)

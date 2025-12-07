@@ -1,9 +1,9 @@
 import Foundation
 
-struct ServerApiException: Error {
-    let message: String
+struct ServerApiException: IException {
+    let Message: String
 
     init(_ message: String) {
-        self.message = message
+        self.Message = message
     }
 }

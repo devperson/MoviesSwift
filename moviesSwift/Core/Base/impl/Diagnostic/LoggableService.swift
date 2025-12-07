@@ -1,6 +1,6 @@
 import Resolver
 
-class LoggableService
+open class LoggableService
 {
     @LazyInjected var loggingService: ILoggingService
     private(set) var specificLogger: ILogging?

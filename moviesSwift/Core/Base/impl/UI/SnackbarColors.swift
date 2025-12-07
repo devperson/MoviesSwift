@@ -1,7 +1,7 @@
-
 import Foundation
 
-enum SnackbarColors {
+enum SnackbarColors
+{
 
     static var InfoColor: XfColor = XfColor.FromHex("#E1F0FF")
     static var InfoTextColor: XfColor = XfColor.FromHex("#FFF9F9FA")
@@ -16,12 +16,12 @@ enum SnackbarColors {
     {
         switch severity
         {
-        case .Info:
-            return InfoColor
-        case .Error, .Warning:
-            return ErrorColor
-        default:
-            return SuccessColor
+            case .Info:
+                return InfoColor
+            case .Error, .Warning:
+                return ErrorColor
+            default:
+                return SuccessColor
         }
     }
 
@@ -29,12 +29,12 @@ enum SnackbarColors {
     {
         switch severity
         {
-        case .Info:
-            return InfoTextColor
-        case .Error, .Warning:
-            return ErrorTextColor
-        default:
-            return SuccessTextColor
+            case .Info:
+                return InfoTextColor
+            case .Error, .Warning:
+                return ErrorTextColor
+            default:
+                return SuccessTextColor
         }
     }
 }

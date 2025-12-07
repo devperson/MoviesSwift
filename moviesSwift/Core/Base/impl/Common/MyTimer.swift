@@ -1,28 +1,36 @@
 import Foundation
 
-public final class MyTimer {
+public final class MyTimer
+{
 
     private let Interval: Duration
     private var timer: Timer? = nil
 
     public let Elapsed = BaseEvent()
 
-    public var IsEnabled: Bool {
+    public var IsEnabled: Bool
+    {
         return timer != nil && timer!.isValid
     }
 
-    public init(_ interval: Duration) {
+    public init(_ interval: Duration)
+    {
         self.Interval = interval
     }
 
-    public func Start() {
-        if IsEnabled { return }
+    public func Start()
+    {
+        if IsEnabled
+        {
+            return
+        }
 
         // Convert Duration → seconds
         let seconds = Interval.timeInterval
 
         // Use a repeating Timer
-        timer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: true) { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: true)
+        { [weak self] _ in
             self?.Elapsed.Invoke()
         }
 
@@ -30,7 +38,8 @@ public final class MyTimer {
         RunLoop.current.add(timer!, forMode: .common)
     }
 
-    public func Stop() {
+    public func Stop()
+    {
         timer?.invalidate()
         timer = nil
     }

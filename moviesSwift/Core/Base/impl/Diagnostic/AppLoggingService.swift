@@ -170,7 +170,7 @@ class AppLoggingService: LoggableService, ILoggingService
     }
 
     func GetLastSessionLogBytes() async -> Data?
-    {       
+    {
         return await fileLogger.GetCompressedLogsSync(getOnlyLastSession: true)
     }
 
@@ -238,62 +238,69 @@ class AppLoggingService: LoggableService, ILoggingService
      This helper is intended for structured debug logging and avoids any
      platform-specific behavior outside of Swift’s reflection system.
      */
-    private func GetMethodNameWithParameters(
-        className: String,
-        funcName: String?,
-        args: [Any?]? = nil
-    ) -> String
+    private func GetMethodNameWithParameters(className: String, funcName: String?, args: [Any?]? = nil) -> String
     {
-        
+
         let itemsCount = 10
-        
+
         // Format each argument
-        let argsString: String? = args?.map { arg -> String in
-            guard let value = arg else { return "nil" }
-            
-            // MARK: - Simple scalar types
-            switch value {
-            case let v as String:    return "\"\(v)\""
-            case let v as Int:       return "\(v)"
-            case let v as Double:    return "\(v)"
-            case let v as Float:     return "\(v)"
-            case let v as Bool:      return v ? "true" : "false"
-            case let v as Character: return "'\(v)'"
-            default: break
+        let argsString: String? = args?.map
+        { arg -> String in
+            guard let value = arg
+            else
+            {
+                return "nil"
             }
-            
+
+            // MARK: - Simple scalar types
+            switch value
+            {
+                case let v as String:    return "\"\(v)\""
+                case let v as Int:       return "\(v)"
+                case let v as Double:    return "\(v)"
+                case let v as Float:     return "\(v)"
+                case let v as Bool:      return v ? "true" : "false"
+                case let v as Character: return "'\(v)'"
+                default: break
+            }
+
             // MARK: - Array types
-            if let array = value as? [Any] {
-                let preview = array
-                    .prefix(itemsCount)
-                    .map { String(describing: $0) }
-                    .joined(separator: ", ")
-                
+            if let array = value as? [Any]
+            {
+                let preview = array.prefix(itemsCount).map
+                {
+                    String(describing: $0)
+                }
+                .joined(separator: ", ")
+
                 return "[\(array.count)] { \(preview) }"
             }
-            
+
             // MARK: - Collection types using Mirror
             let mirror = Mirror(reflecting: value)
-            
-            if let style = mirror.displayStyle, style == .collection || style == .set {
+
+            if let style = mirror.displayStyle, style == .collection || style == .set
+            {
                 let children = Array(mirror.children)
-                let preview = children
-                    .prefix(itemsCount)
-                    .map { String(describing: $0.value) }
-                    .joined(separator: ", ")
-                
+                let preview = children.prefix(itemsCount).map
+                {
+                    String(describing: $0.value)
+                }
+                .joined(separator: ", ")
+
                 return "\(type(of: value))[\(children.count)] { \(preview) }"
             }
-            
+
             // MARK: - Default object description
             // Swift does not produce JVM-like ClassName@hashCode strings,
             // so we can safely show "TypeName: description"
             let typeName = String(describing: type(of: value))
             let description = String(describing: value)
-            
+
             return "\(typeName): \(description)"
-            
-        }.joined(separator: ", ")
+
+        }
+        .joined(separator: ", ")
 
         return "\(className).\(funcName ?? "?")(\(argsString ?? ""))"
     }

@@ -144,7 +144,7 @@ class VersionTrackingImplementation: LoggableService, IVersionTracking
     func GetStatus() -> String
     {
         LogMethodStart(#function)
-        
+
         var sb: [String] = []
         sb.append("")
         sb.append("VersionTracking")

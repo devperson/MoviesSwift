@@ -1,4 +1,3 @@
-
 import Resolver
 
 class ContainerLocator

@@ -209,7 +209,7 @@ class PageViewModel: NavigatingBaseViewModel, IPageLifecycleAware
                 injectedServices.LoggingService.LogWarning("Skip showing error popup for user because this error is handled in main view \(String(describing: type(of: e))): \(e.localizedDescription)")
                 return
 
-            case let e as HttpRequestException where e.statusCode == HttpStatusCode.Unauthorized.rawValue:
+            case let e as HttpRequestException where e.StatusCode == HttpStatusCode.Unauthorized.rawValue:
                 injectedServices.LoggingService.LogWarning("Skip showing error popup for user because this error is handled in main view \(String(describing: type(of: e))): \(e.localizedDescription)")
                 return
 
@@ -217,13 +217,13 @@ class PageViewModel: NavigatingBaseViewModel, IPageLifecycleAware
                 injectedServices.SnackBarService.ShowError("It looks like there may be an issue with your connection. Please check your internet connection and try again.")
 
             case let e as HttpRequestException:
-                if e.statusCode == HttpStatusCode.ServiceUnavailable.rawValue
+                if e.StatusCode == HttpStatusCode.ServiceUnavailable.rawValue
                 {
                     injectedServices.SnackBarService.ShowError("The server is temporarily unavailable. Please try again later.")
                 }
                 else
                 {
-                    injectedServices.SnackBarService.ShowError("It seems server is not available, please try again later. (StatusCode - \(e.statusCode)).")
+                    injectedServices.SnackBarService.ShowError("It seems server is not available, please try again later. (StatusCode - \(e.StatusCode)).")
                 }
 
             case is ServerApiException:

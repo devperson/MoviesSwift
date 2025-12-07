@@ -1,6 +1,6 @@
 import Foundation
 
-class MovieItemViewModel: LoggableViewModel, Equatable
+class MovieItemViewModel: LoggableService, Equatable
 {
     var Id: Int = 0
     var Name: String = ""

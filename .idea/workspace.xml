@@ -7,16 +7,35 @@
     <list default="true" id="a5739ada-4eac-4b1e-8001-fdc316c9760a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/moviesSwift.xcodeproj/project.xcworkspace/xcuserdata/xasan.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift.xcodeproj/project.xcworkspace/xcuserdata/xasan.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/Diagnostic/IErrorTrackingService.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/Diagnostic/IErrorTrackingService.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/REST/Exceptions/AuthExpiredException.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/REST/Exceptions/AuthExpiredException.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/REST/Exceptions/HttpConnectionException.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/REST/Exceptions/HttpConnectionException.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/REST/Exceptions/HttpRequestException.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/REST/Exceptions/HttpRequestException.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/REST/Exceptions/ServerApiException.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/REST/Exceptions/ServerApiException.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/REST/IRestClient.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Abstractions/REST/IRestClient.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Common/TaskCompletionSource.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Common/TaskCompletionSource.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Common/Timer.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/ContainerLocator.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/ContainerLocator.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Diagnostic/AppLogExporter.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Diagnostic/AppLogExporter.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Diagnostic/AppLoggingService.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Diagnostic/AppLoggingService.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Diagnostic/LoggableService.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Diagnostic/LoggableService.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Domain/Infrustructuries/IMovieRestService.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Diagnostic/VersionTrackingImplementation.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Diagnostic/VersionTrackingImplementation.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/REST/AuthTokenService.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/REST/AuthTokenService.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/REST/RequestQueueItem.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/REST/RequestQueueItem.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/REST/RequestQueueList.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/REST/RequestQueueList.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/REST/RestClient.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/REST/RestService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Repository/BaseRepository.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/Repository/BaseRepository.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/UI/ActionSheetArguments.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/UI/ActionSheetArguments.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/UI/AlertArguments.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/UI/AlertArguments.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/UI/SnackbarColors.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/impl/UI/SnackbarColors.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviesSwift/Core/Base/mvvm/ViewModels/PageViewModel.swift" beforeDir="false" afterPath="$PROJECT_DIR$/moviesSwift/Core/Base/mvvm/ViewModels/PageViewModel.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_00008110-00125CA81492601E" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_53B1FB5A-0022-48B4-9F26-1BA5A03E4B5E" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -54,16 +73,15 @@
   }
 }</component>
   <component name="RunManager">
-    <configuration default="true" type="AppleRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" IS_LOCATION_SIMULATION_SUPPORTED="false" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" DEVELOPMENT_TEAM="${TEAM_ID}" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
+    <configuration name="moviesSwift" type="AppleRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="moviesSwift" TARGET_NAME="moviesSwift" CONFIG_NAME="Debug" IS_LOCATION_SIMULATION_SUPPORTED="true" SCHEME_NAME="moviesSwift" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" DEVELOPMENT_TEAM="${TEAM_ID}" RUN_TARGET_PROJECT_NAME="moviesSwift" RUN_TARGET_NAME="moviesSwift" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
       <embedded_app_extension_list />
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="moviesSwift" type="AppleRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="moviesSwift" TARGET_NAME="moviesSwift" CONFIG_NAME="Debug" IS_LOCATION_SIMULATION_SUPPORTED="true" SCHEME_NAME="moviesSwift" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" DEVELOPMENT_TEAM="${TEAM_ID}" RUN_TARGET_PROJECT_NAME="moviesSwift" RUN_TARGET_NAME="moviesSwift" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
-      <embedded_app_extension_list />
+    <configuration default="true" type="Application" factoryName="Application">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="Make" enabled="true" />
       </method>
     </configuration>
   </component>
@@ -80,7 +98,7 @@
   <component name="XcodeBuildConfigurationMetadata">
     <buildConfigurationMetadataMap>
       <entry key="Xcode Application.moviesSwift">
-        <BuildConfigurationMetadata buildDestinationId="iphoneos_00008110-00125CA81492601E" isDestinationPhysicalDevice="true" />
+        <BuildConfigurationMetadata buildDestinationId="iphonesimulator_53B1FB5A-0022-48B4-9F26-1BA5A03E4B5E" />
       </entry>
     </buildConfigurationMetadataMap>
   </component>

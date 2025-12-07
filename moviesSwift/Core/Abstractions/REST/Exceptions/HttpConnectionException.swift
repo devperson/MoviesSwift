@@ -1,11 +1,11 @@
 import Foundation
 
-struct HttpConnectionException: Error {
-    let message: String
-    let cause: Error?
+struct HttpConnectionException: IExceptionWithInner {
+    let Message: String
+    let Cause: Error?
 
     init(message: String, cause: Error? = nil) {
-        self.message = message
-        self.cause = cause
+        self.Message = message
+        self.Cause = cause
     }
 }

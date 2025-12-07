@@ -3,7 +3,7 @@ import Resolver
 
 final class AuthTokenService: LoggableService, IAuthTokenService
 {
-   
+
     @LazyInjected var preferencesService: IPreferences
 
     private static let TAG = "AuthTokenService: "
@@ -13,17 +13,22 @@ final class AuthTokenService: LoggableService, IAuthTokenService
 
     // MARK: - IAuthTokenService
 
-    func GetToken() async -> String? {
+    func GetToken() async -> String?
+    {
         let tokenDetails = await GetAuthTokenDetails()
         return tokenDetails?.Token ?? ""
     }
 
-    func EnsureAuthValid() async throws {
-        if authToken == nil {
+    func EnsureAuthValid() async throws
+    {
+        if authToken == nil
+        {
             authToken = await GetAuthTokenDetails()
         }
 
-        guard let authToken = authToken else {
+        guard let authToken = authToken
+        else
+        {
             loggingService.LogWarning("\(Self.TAG)Skip checking access token because authToken is null")
             return
         }
@@ -31,52 +36,60 @@ final class AuthTokenService: LoggableService, IAuthTokenService
         let expireDate = authToken.ExpiredDate
         let nowDate = Date().utcDateOnly
 
-        guard let expireMinus2Days = Calendar.current.date(
-            byAdding: .day,
-            value: -2,
-            to: expireDate
-        )?.utcDateOnly else {
+        guard let expireMinus2Days = Calendar.current.date(byAdding: .day, value: -2, to: expireDate)?.utcDateOnly
+        else
+        {
             loggingService.LogWarning("\(Self.TAG)Failed to calculate 'expiredDate - 2 days'")
             return
         }
 
-        if expireMinus2Days < nowDate {
-            loggingService.LogWarning(
-                "\(Self.TAG)Access token expired (expiredDate - 2days): " +
-                "\(expireMinus2Days) < \(nowDate), actual expired: \(expireDate)"
-            )
+        if expireMinus2Days < nowDate
+        {
+            loggingService.LogWarning("\(Self.TAG)Access token expired (expiredDate - 2days): " + "\(expireMinus2Days) < \(nowDate), actual expired: \(expireDate)")
             throw AuthExpiredException()
         }
     }
 
-    func SaveAuthTokenDetails(_ authToken: AuthTokenDetails?) async {
-        do {
+    func SaveAuthTokenDetails(_ authToken: AuthTokenDetails?) async
+    {
+        do
+        {
             let data = try JSONEncoder().encode(authToken)
             let jsonString = String(data: data, encoding: .utf8) ?? ""
             preferencesService.Set(Self.AUTH_KEY, jsonString)
-        } catch {
+        }
+        catch
+        {
             loggingService.LogError(error, "\(Self.TAG)Failed to serialize AuthTokenDetails")
         }
     }
 
-    func GetAuthTokenDetails() async -> AuthTokenDetails? {
+    func GetAuthTokenDetails() async -> AuthTokenDetails?
+    {
         let authTokenJson = preferencesService.Get(Self.AUTH_KEY, defaultValue: "")
-        guard !authTokenJson.isEmpty else {
+        guard !authTokenJson.isEmpty
+        else
+        {
             return nil
         }
 
-        do {
+        do
+        {
             let data = Data(authTokenJson.utf8)
             return try JSONDecoder().decode(AuthTokenDetails.self, from: data)
-        } catch {
+        }
+        catch
+        {
             loggingService.LogError(error, "\(Self.TAG)Failed to deserialize AuthTokenDetails")
             return nil
         }
     }
 }
 
-extension Date {
-    var utcDateOnly: Date {
+extension Date
+{
+    var utcDateOnly: Date
+    {
         let calendar = Calendar(identifier: .gregorian)
         var components = calendar.dateComponents(in: TimeZone(secondsFromGMT: 0)!, from: self)
         components.hour = 0

@@ -8,7 +8,8 @@
 
 import Foundation
 
-internal class RequestQueueItem {
+internal class RequestQueueItem
+{
 
     // MARK: - Properties
 
@@ -30,19 +31,25 @@ internal class RequestQueueItem {
 
     // MARK: - Timeout Mapping
 
-    var TimeOut: Int {
-        switch timeoutType {
-        case .High:
-            return TimeoutType.High.rawValue + 5
-        case .VeryHigh:
-            return TimeoutType.VeryHigh.rawValue + 5
-        default:
-            return TimeoutType.Medium.rawValue + 1
+    var TimeOut: Int
+    {
+        switch timeoutType
+        {
+            case .High:
+                return TimeoutType.High.rawValue + 5
+            case .VeryHigh:
+                return TimeoutType.VeryHigh.rawValue + 5
+            default:
+                return TimeoutType.Medium.rawValue + 1
         }
     }
 
-    var IsTimeOut: Bool {
-        if IsCompleted { return false }
+    var IsTimeOut: Bool
+    {
+        if IsCompleted
+        {
+            return false
+        }
 
         let now = Date()
         let elapsedSeconds = Int(now.timeIntervalSince1970 - startedAt.timeIntervalSince1970)
@@ -52,12 +59,15 @@ internal class RequestQueueItem {
 
     // MARK: - Run Request
 
-    func RunRequest() async {
-        do {
+    func RunRequest() async
+    {
+        do
+        {
             IsRunning = true
             startedAt = Date()
 
-            if let action = RequestAction {
+            if let action = RequestAction
+            {
                 result = try await action()
             }
 
@@ -67,7 +77,8 @@ internal class RequestQueueItem {
             IsCompleted = true
             IsRunning = false
         }
-        catch {
+        catch
+        {
             ForceToComplete(error, logString: "Id:\(Id) Failed to invoke RequestAction()")
         }
 
@@ -76,8 +87,10 @@ internal class RequestQueueItem {
 
     // MARK: - Force Complete with Error
 
-    func ForceToComplete(_ error: Error, logString: String) {
-        if IsCompleted {
+    func ForceToComplete(_ error: Error, logString: String)
+    {
+        if IsCompleted
+        {
             logger?.LogWarning("No need to force complete the request \(Id) because it is already completed")
             return
         }
@@ -92,9 +105,12 @@ internal class RequestQueueItem {
 
     // MARK: - Remove From Parent
 
-    func RemoveFromParent() {
-        if let parent = parentList {
-            if parent.Contains(self) {
+    func RemoveFromParent()
+    {
+        if let parent = parentList
+        {
+            if parent.Contains(self)
+            {
                 parent.Remove(self)
                 parent.OnItemCompleted(self)
             }

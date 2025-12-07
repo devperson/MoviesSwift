@@ -143,9 +143,9 @@ class BaseRepository<TEntity: IEntity, Tb>: LoggableService, IRepository where T
         }
 
         return realm.object(ofType: Tb.self, forPrimaryKey: id).map
-            {
-                mapper.ToEntity(tb: $0)
-            }
+        {
+            mapper.ToEntity(tb: $0)
+        }
     }
 
     func UpdateAsync(_ entity: TEntity) async throws -> Int
