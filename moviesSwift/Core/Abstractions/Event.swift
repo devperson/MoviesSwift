@@ -10,6 +10,11 @@ open class BaseEvent
         handlers.append(.init(id: id, handler: handler))
         return id
     }
+    
+    func AddListener(_ id: UUID, _ handler: @escaping () -> Void)
+    {
+        handlers.append(.init(id: id, handler: handler))
+    }
 
     func RemoveListener(_ id: UUID)
     {

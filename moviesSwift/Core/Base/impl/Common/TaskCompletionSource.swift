@@ -1,10 +1,9 @@
-
 final class TaskCompletionSource<T> {
-    private var continuation: CheckedContinuation<T, Never>?
+    private var continuation: CheckedContinuation<T, Error>?
 
-    var task: Task<T, Never> {
+    var task: Task<T, Error> {
         Task {
-            await withCheckedContinuation { cont in
+            try await withCheckedThrowingContinuation { cont in
                 self.continuation = cont
             }
         }
@@ -12,5 +11,9 @@ final class TaskCompletionSource<T> {
 
     func setResult(_ value: T) {
         continuation?.resume(returning: value)
+    }
+
+    func setError(_ error: Error) {
+        continuation?.resume(throwing: error)
     }
 }

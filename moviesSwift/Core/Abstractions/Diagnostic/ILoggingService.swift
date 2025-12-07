@@ -32,6 +32,11 @@ extension ILoggingService
         LogError(ex, message: "", handled: true)
     }
     
+    func LogError(_ ex: Error, _ message: String)
+    {
+        LogError(ex, message: "", handled: true)
+    }
+    
     func TrackError(_ ex: Error, data: [String: String]? = nil)
     {
         TrackError(ex, data: data)
