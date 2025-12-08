@@ -1,17 +1,11 @@
-//
-//  RequestQueueList.swift
-//  moviesSwift
-//
-//  Created by xasan on 06/12/25.
-//
-
-
+import Resolver
 import Foundation
 
 internal final class RequestQueueList
 {
 
-    private let loggingService: ILoggingService
+    @LazyInjected
+    var loggingService: ILoggingService
     private var items: [RequestQueueItem] = []
 
     // === Events ===
@@ -27,22 +21,14 @@ internal final class RequestQueueList
 
     private let TAG = "RequestQueueList"
 
-    // MARK: - Init
-
-    init(loggingService: ILoggingService, items: [RequestQueueItem] = [])
+    init()
     {
         self.loggingService = loggingService
-        self.items = items
-
-        // Kotlin: timeOutTimer.Elapsed += ::TimeOutTimer_Elapsed
-        _ = timeOutTimer.Elapsed.AddListener
-        { [weak self] in
-            self?.TimeOutTimer_Elapsed()
-        }
+        
+        _ = timeOutTimer.Elapsed.AddListener(TimeOutTimer_Elapsed)
     }
 
     // MARK: - Timeout tick handler
-
     func TimeOutTimer_Elapsed()
     {
         loggingService.Log("\(TAG): Timeout timer tick — checking for timed out requests.")
@@ -50,7 +36,6 @@ internal final class RequestQueueList
     }
 
     // MARK: - MutableList add
-
     @discardableResult
     func add(_ element: RequestQueueItem) -> Bool
     {

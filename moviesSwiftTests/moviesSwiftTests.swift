@@ -1,10 +1,3 @@
-//
-//  moviesSwiftTests.swift
-//  moviesSwiftTests
-//
-//  Created by xasan on 03/12/25.
-//
-
 import XCTest
 @testable import moviesSwift
 

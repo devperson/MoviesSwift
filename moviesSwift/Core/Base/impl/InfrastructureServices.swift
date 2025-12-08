@@ -6,7 +6,7 @@ open class InfrastructureServices : LoggableService, IInfrastructureServices
     @LazyInjected
     private var restQueueService: RequestQueueList
 
-    func Start() async
+    func Start() async throws
     {
 
     }

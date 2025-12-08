@@ -39,10 +39,17 @@ import Resolver
     {
         super.Initialize(parameters)
 
-        Task.detached
+        Task
         {
-            await self.infrastructureServices.Start()
-            await self.LoadData(getFromServer: false, showError: false)
+            do
+            {
+                try await self.infrastructureServices.Start()
+                await self.LoadData(getFromServer: false, showError: false)
+            }
+            catch
+            {
+                self.Services.LoggingService.TrackError(error)
+            }
         }
     }
 
@@ -174,7 +181,7 @@ import Resolver
 
     func HandleAuthErrorEvent(_ arg: Any?)
     {
-        LogMethodStart("HandleAuthErrorEvent")
+        LogMethodStart(#function)
 
 
         Task.detached
@@ -201,7 +208,7 @@ import Resolver
 
     func LoadData(getFromServer: Bool = false, showError: Bool = false) async
     {
-        LogMethodStart("LoadData", getFromServer)
+        LogMethodStart(#function, getFromServer)
         
         let result = await ShowLoadingWithResult(
             {

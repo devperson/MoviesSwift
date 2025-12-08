@@ -1,8 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="06329b14-f5ba-4ae0-8508-18eab9e130ba" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../moviesSwift.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../moviesSwift.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../moviesSwift.xcodeproj/project.xcworkspace/xcuserdata/xusan.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/../moviesSwift.xcodeproj/project.xcworkspace/xcuserdata/xusan.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Abstractions/IInfrastructureServices.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Abstractions/IInfrastructureServices.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Abstractions/Repository/ILocalDbInitilizer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Abstractions/Repository/ILocalDbInitilizer.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Base/impl/InfrastructureServices.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Base/impl/InfrastructureServices.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Base/impl/REST/RequestQueueList.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Base/impl/REST/RequestQueueList.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Domain/Mapper/RepoMovieMapper.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Domain/Mapper/RepoMovieMapper.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ViewModels/MoviesPageViewModel.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/MoviesPageViewModel.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../moviesSwiftTests/moviesSwiftTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../moviesSwiftTests/moviesSwiftTests.swift" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "xusan"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/devperson/MoviesSwift.git",
+    "accountId": "eff7b75b-e548-4909-8aee-82d52c327ac4"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="36ZTPk5tiontp1itkTq16MfnFqq" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/xusan/Projects/MoviesSwift/moviesSwift"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="AppleRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" IS_LOCATION_SIMULATION_SUPPORTED="false" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" DEVELOPMENT_TEAM="${TEAM_ID}" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
+      <embedded_app_extension_list />
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="06329b14-f5ba-4ae0-8508-18eab9e130ba" name="Changes" comment="" />
+      <created>1765213071185</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1765213071185</updated>
+    </task>
+    <servers />
   </component>
 </project>

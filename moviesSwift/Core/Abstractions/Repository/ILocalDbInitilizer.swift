@@ -21,3 +21,11 @@ protocol ILocalDbInitilizer
     func InitDb() async throws
     func Release(closeConnection: Bool) async
 }
+
+extension ILocalDbInitilizer
+{
+    func Release(closeConnection: Bool = false) async
+    {
+        await Release(closeConnection: closeConnection)
+    }
+}

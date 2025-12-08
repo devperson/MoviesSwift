@@ -15,9 +15,7 @@ struct RepoMovieMapper: IRepoMapper
 
     func ToEntity(tb: MovieTb) -> Movie
     {
-        // Kotlin: Movie.Create(tb.Name, tb.Overview, tb.PostUrl).apply { Id = tb.Id }
-
-        var movie = Movie.Create(tb.Name, tb.Overview, tb.PostUrl)
+        let movie = Movie.Create(tb.Name, tb.Overview, tb.PostUrl)
 
         movie.Id = tb.Id
         return movie
