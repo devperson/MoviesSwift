@@ -1,6 +1,4 @@
-import Foundation
-
-struct ServerApiException: IException
+struct AppServiceException: IException
 {
     let Message: String
 
@@ -9,3 +7,4 @@ struct ServerApiException: IException
         self.Message = message
     }
 }
+

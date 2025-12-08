@@ -1,5 +1,6 @@
 import Foundation
 
-protocol IShare {
+protocol IShare
+{
     func RequestShareFile(title: String, fullPath: String)
 }

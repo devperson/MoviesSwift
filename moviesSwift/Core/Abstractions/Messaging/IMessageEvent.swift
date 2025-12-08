@@ -1,6 +1,7 @@
 import Foundation
 
-protocol IMessageEvent {
+protocol IMessageEvent
+{
     func Subscribe(_ handler: @escaping (Any?) -> Void) -> UUID
     func Subscribe(_ id: UUID, _ handler: @escaping (Any?) -> Void)
     func Unsubscribe(_ id: UUID)

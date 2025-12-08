@@ -3,7 +3,8 @@ import Foundation
 /// <summary>
 /// Provides a way to display a web page inside an app.
 /// </summary>
-protocol IBrowser {
+protocol IBrowser
+{
     /// <summary>
     /// Open the browser to specified URI.
     /// </summary>

@@ -11,14 +11,8 @@ struct RestRequest
     var RetryCount: Int = 0
     var HeaderValues: [String: String]? = nil
 
-    init(apiEndpoint: String,
-         requestPriority: Priority = .High,
-         requestTimeout: TimeoutType = .Small,
-         cancelSameRequest: Bool = false,
-         withBearer: Bool = true,
-         requestBody: String? = nil,
-         retryCount: Int = 0,
-         headerValues: [String: String]? = nil) {
+    init(apiEndpoint: String, requestPriority: Priority = .High, requestTimeout: TimeoutType = .Small, cancelSameRequest: Bool = false, withBearer: Bool = true, requestBody: String? = nil, retryCount: Int = 0, headerValues: [String: String]? = nil)
+    {
         self.ApiEndpoint = apiEndpoint
         self.RequestPriority = requestPriority
         self.RequestTimeout = requestTimeout

@@ -3,7 +3,8 @@ import Foundation
 /**
  * Represents various types of email body formats.
  */
-public enum EmailBodyFormat {
+public enum EmailBodyFormat
+{
     /**
      * The email message body is plain text.
      */

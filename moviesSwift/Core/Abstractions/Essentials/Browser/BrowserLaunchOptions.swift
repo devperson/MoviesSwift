@@ -36,7 +36,8 @@ class BrowserLaunchOptions
     /// <remarks>The default value is <see cref="BrowserLaunchFlags.None"/>. Not all flags work on all platforms, check the flag descriptions.</remarks>
     var Flags: BrowserLaunchFlags = BrowserLaunchFlags.None
 
-    func HasFlag(flag: BrowserLaunchFlags) -> Bool {
+    func HasFlag(flag: BrowserLaunchFlags) -> Bool
+    {
         return (Flags.rawValue & flag.rawValue) != 0
     }
 }

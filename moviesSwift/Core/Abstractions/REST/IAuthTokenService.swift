@@ -15,7 +15,8 @@ public struct AuthTokenDetails: Codable
     public let ExpiredDate: Date
     public let RefreshToken: String
 
-    public init(Token: String, ExpiredDate: Date, RefreshToken: String) {
+    public init(Token: String, ExpiredDate: Date, RefreshToken: String)
+    {
         self.Token = Token
         self.ExpiredDate = ExpiredDate
         self.RefreshToken = RefreshToken
@@ -37,7 +38,8 @@ public struct AuthTokenDetails: Codable
        Swift would try to map JSON keys using a different case style,
        and decoding would fail or produce nil values.
      */
-    enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey
+    {
         case Token
         case ExpiredDate
         case RefreshToken

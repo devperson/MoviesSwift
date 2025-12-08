@@ -1,7 +1,8 @@
 import Foundation
 
 /// The Preferences API helps to store application preferences in a key/value store.
-public protocol IPreferences {
+public protocol IPreferences
+{
     /// Checks for the existence of a given key.
     func ContainsKey(_ key: String) -> Bool
 

@@ -1,6 +1,7 @@
 import Foundation
 
-public enum BrowserTitleMode {
+public enum BrowserTitleMode
+{
     case Default
     case Show
     case Hide

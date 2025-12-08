@@ -2,5 +2,8 @@ import Foundation
 
 protocol ITable
 {
-    var Id: Int { get set }
+    var Id: Int
+    {
+        get set
+    }
 }

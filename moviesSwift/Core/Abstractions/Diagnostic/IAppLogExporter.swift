@@ -1,14 +1,17 @@
 import Foundation
 
-protocol IAppLogExporter {
+protocol IAppLogExporter
+{
     func ShareLogs() async -> LogSharingResult
 }
 
-public struct LogSharingResult {
+public struct LogSharingResult
+{
     public let Success: Bool
     public let Exception: Error?
 
-    public init(Success: Bool, Exception: Error? = nil) {
+    public init(Success: Bool, Exception: Error? = nil)
+    {
         self.Success = Success
         self.Exception = Exception
     }

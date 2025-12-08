@@ -1,5 +1,9 @@
 import Foundation
 
-protocol IConstant {
-    var ServerUrlHost: String { get }
+protocol IConstant
+{
+    var ServerUrlHost: String
+    {
+        get
+    }
 }

@@ -1,6 +1,7 @@
 import Foundation
 
-protocol IFileLogger {
+protocol IFileLogger
+{
     func Init()
     func Info(_ message: String)
     func Warn(_ message: String)

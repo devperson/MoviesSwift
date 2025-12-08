@@ -73,6 +73,7 @@ class BaseRepository<TEntity: IEntity, Tb>: LoggableService, IRepository where T
         }
     }
 
+    
     func AddAsync(_ entity: TEntity) async throws -> Int
     {
         LogMethodStart(#function, entity)

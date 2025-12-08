@@ -2,9 +2,18 @@ import Foundation
 
 protocol ILocalDbInitilizer
 {
-    var DbsFolderName: String { get }
-    var DbExtenstion: String { get }
-    var DbName: String { get }
+    var DbsFolderName: String
+    {
+        get
+    }
+    var DbExtenstion: String
+    {
+        get
+    }
+    var DbName: String
+    {
+        get
+    }
     func GetDbPath() throws -> String
     func GetDbDir() throws -> String
 

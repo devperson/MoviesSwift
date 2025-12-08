@@ -1,16 +1,19 @@
 import Foundation
 
-protocol IMediaPickerService {
+protocol IMediaPickerService
+{
     func GetPhotoAsync(options: MediaOptions) async -> MediaFile?
     func TakePhotoAsync(options: MediaOptions) async -> MediaFile?
 }
 
-enum MediaSource {
+enum MediaSource
+{
     case camera
     case gallery
 }
 
-struct MediaOptions {
+struct MediaOptions
+{
     var IncludeBytes: Bool = false
     var Compress: Bool = false
     var CompressionQuality: Int = 95
@@ -19,7 +22,8 @@ struct MediaOptions {
     var SaveToAppDirectory: Bool = true
 }
 
-struct MediaFile {
+struct MediaFile
+{
     let FilePath: String
     let MimeType: String?
     let ByteData: Data?

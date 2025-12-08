@@ -3,7 +3,8 @@ import Foundation
 /**
  * Represents a email file attachment.
  */
-class EmailAttachment {
+class EmailAttachment
+{
     var FullPath: String
     var ContentType: String
 
@@ -13,7 +14,8 @@ class EmailAttachment {
      * @param fullPath Full path and filename to file on filesystem.
      * @param contentType Content type (MIME type) of the file (e.g.: image/png).
      */
-    init(fullPath: String, contentType: String) {
+    init(fullPath: String, contentType: String)
+    {
         self.FullPath = fullPath
         self.ContentType = contentType
     }

@@ -1,11 +1,3 @@
-//
-//  RestService.swift
-//  moviesSwift
-//
-//  Created by xasan on 08/12/25.
-//
-
-
 import Foundation
 import Resolver
 
@@ -18,9 +10,7 @@ open class RestService: LoggableService
     @LazyInjected var constants: IConstant
 
     private let tag = "RestClientService: "
-
-    // JSON serializers
-    // (tuned to behave similarly to Kotlinx Json settings)
+   
     let jsonDecoder: JSONDecoder = {
         let d = JSONDecoder()
         // customize if needed (date decoding, key strategies, etc.)
@@ -33,9 +23,7 @@ open class RestService: LoggableService
         return e
     }()
 
-    // MARK: - Public REST API
-
-    // Kotlin: suspend inline fun <reified T> Get(restRequest: RestRequest): T
+    
     func Get<T: Decodable>(_ type: T.Type, _ restRequest: RestRequest) async throws -> T
     {
         LogMethodStart(#function, restRequest)
@@ -45,7 +33,7 @@ open class RestService: LoggableService
         }
     }
 
-    // Kotlin: suspend inline fun <reified T> Post(restRequest: RestRequest): T
+   
     func Post<T: Decodable>(_ type: T.Type, _ restRequest: RestRequest) async throws -> T
     {
         LogMethodStart(#function, restRequest)
@@ -55,8 +43,7 @@ open class RestService: LoggableService
         }
     }
 
-    // Kotlin: suspend inline fun <reified T> Put(restRequest: RestRequest)
-    // In Kotlin this usually ignores the body result. We'll just fire the request.
+   
     func Put(_ restRequest: RestRequest) async throws
     {
         LogMethodStart(#function, restRequest)
@@ -67,7 +54,7 @@ open class RestService: LoggableService
         }
     }
 
-    // Kotlin: suspend inline fun <reified T> Delete(restRequest: RestRequest): Any
+   
     func Delete<T: Decodable>(_ type: T.Type, _ restRequest: RestRequest) async throws -> T
     {
         LogMethodStart(#function, restRequest)
@@ -79,7 +66,7 @@ open class RestService: LoggableService
 
     // MARK: - Core Web Request
 
-    // Kotlin: suspend inline fun <reified T> MakeWebRequest(method: RestMethod, restRequest: RestRequest): T
+   
     func MakeWebRequest<T: Decodable>(_ type: T.Type, _ method: RestMethod, _ restRequest: RestRequest) async throws -> T
     {
 
@@ -94,7 +81,7 @@ open class RestService: LoggableService
         return try Deserialize(type, requestResult)
     }
 
-    // Kotlin: fun AddRequestToQueue(...): Deferred<String>
+   
     func AddRequestToQueue(_ method: RestMethod, _ restRequest: RestRequest) -> Task<String, Error>
     {
         let path = GetUrlWithoutParam(restRequest.ApiEndpoint)
@@ -173,9 +160,7 @@ open class RestService: LoggableService
         return item.CompletionSource.task
     }
 
-    // MARK: - Deserialize / Error detection
-
-    // Kotlin: inline fun <reified T> Deserialize(jsonStr: String): T
+   
     func Deserialize<T: Decodable>(_ type: T.Type, _ jsonStr: String) throws -> T
     {
         try CheckForError(jsonStr)

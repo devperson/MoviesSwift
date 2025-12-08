@@ -1,6 +1,7 @@
 import Foundation
 
-class EmailMessage {
+class EmailMessage
+{
     public var Subject: String?
     public var Body: String?
     public var BodyFormat: EmailBodyFormat = .PlainText
@@ -9,7 +10,8 @@ class EmailMessage {
     public var Bcc: [String]
     public var Attachments: [EmailAttachment]
 
-    init() {
+    init()
+    {
         self.Subject = nil
         self.Body = nil
         self.To = []
@@ -18,7 +20,8 @@ class EmailMessage {
         self.Attachments = []
     }
 
-    init(subject: String, body: String, to: [String]) {
+    init(subject: String, body: String, to: [String])
+    {
         self.Subject = subject
         self.Body = body
         self.To = to

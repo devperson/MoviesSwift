@@ -2,20 +2,20 @@ import Foundation
 
 open class SubMessage: IMessageEvent
 {
-    private var handlers: [UUID : (Any?) -> Void] = [:]
+    private var handlers: [UUID: (Any?) -> Void] = [:]
     private let queue = DispatchQueue(label: "SimpleMessagingCenter.SubMessage")
 
     public func Subscribe(_ handler: @escaping (Any?) -> Void) -> UUID
     {
         let id = UUID()
         queue.sync
-        {            
+        {
             handlers[id] = handler
         }
         return id
     }
-    
-    public func Subscribe(_ id: UUID,  _ handler: @escaping (Any?) -> Void)
+
+    public func Subscribe(_ id: UUID, _ handler: @escaping (Any?) -> Void)
     {
         queue.sync
         {
@@ -33,8 +33,14 @@ open class SubMessage: IMessageEvent
 
     public func Publish(_ args: Any?)
     {
-        let snapshot = queue.sync { handlers }
-        snapshot.forEach { $0.value(args) }
+        let snapshot = queue.sync
+        {
+            handlers
+        }
+        snapshot.forEach
+        {
+            $0.value(args)
+        }
     }
 }
 
@@ -48,7 +54,8 @@ class SimpleMessageCenter: IMessagesCenter
         return queue.sync
         {
             let key = ObjectIdentifier(eventType)
-            if let existing = events[key] as? TEvent {
+            if let existing = events[key] as? TEvent
+            {
                 return existing
             }
             let newInstance = factory()

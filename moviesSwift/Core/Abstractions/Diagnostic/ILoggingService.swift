@@ -1,14 +1,22 @@
 import Foundation
 
-protocol ILogging {
+protocol ILogging
+{
     func Log(_ message: String)
     func LogWarning(_ message: String)
     func LogMethodStarted(className: String, methodName: String, args: [Any?]?)
 }
 
-protocol ILoggingService: ILogging {
-    var LastError: Error? { get set }
-    var HasError: Bool { get }
+protocol ILoggingService: ILogging
+{
+    var LastError: Error?
+    {
+        get set
+    }
+    var HasError: Bool
+    {
+        get
+    }
 
     func LogMethodStarted(_ methodName: String)
     func Header(_ headerMessage: String)
@@ -31,19 +39,20 @@ extension ILoggingService
     {
         LogError(ex, message: "", handled: true)
     }
-    
+
     func LogError(_ ex: Error, _ message: String)
     {
         LogError(ex, message: "", handled: true)
     }
-    
+
     func TrackError(_ ex: Error, data: [String: String]? = nil)
     {
         TrackError(ex, data: data)
     }
 }
 
-struct SpecificLoggingKeys {
+struct SpecificLoggingKeys
+{
     static let LogEssentialServices = "LogEssentialServices"
     static let LogUIServices = "LogUIServices"
     static let LogUIControlsKey = "LogUIControlsKey"

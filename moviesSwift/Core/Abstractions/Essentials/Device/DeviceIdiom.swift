@@ -1,6 +1,7 @@
 import Foundation
 
-public enum DeviceIdiom {
+public enum DeviceIdiom
+{
     case Unknown
     case Phone
     case Tablet

@@ -4,7 +4,8 @@ import Foundation
  * Represents the type of device.
  */
 
-public enum DeviceTypeEnum {
+public enum DeviceTypeEnum
+{
     /**
      * An unknown device type.
      */

@@ -1,6 +1,7 @@
 import Foundation
 
-protocol IDisplay {
+protocol IDisplay
+{
     func GetDisplayInfo() -> DisplayInfo
     func GetDisplayKeepOnValue() -> Bool
     func SetDisplayKeepOnValue(_ keepOn: Bool)

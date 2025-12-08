@@ -10,8 +10,11 @@ import Foundation
 
 protocol ISnackbarService
 {
-    var PopupShowed: Event<SeverityType> { get }
-    func ShowError( _ message: String);
+    var PopupShowed: Event<SeverityType>
+    {
+        get
+    }
+    func ShowError(_ message: String);
     func ShowInfo(_ message: String);
     func Show(message: String, severityType: SeverityType, duration: Int);
 }

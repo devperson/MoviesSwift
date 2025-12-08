@@ -1,5 +1,6 @@
 import Foundation
 
-class AuthErrorEvent: SubMessage {
+class AuthErrorEvent: SubMessage
+{
     // Intentionally empty – message marker class
 }

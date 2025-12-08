@@ -10,7 +10,7 @@ open class BaseEvent
         handlers.append(.init(id: id, handler: handler))
         return id
     }
-    
+
     func AddListener(_ id: UUID, _ handler: @escaping () -> Void)
     {
         handlers.append(.init(id: id, handler: handler))
@@ -18,13 +18,18 @@ open class BaseEvent
 
     func RemoveListener(_ id: UUID)
     {
-        handlers.removeAll { $0.id == id }
+        handlers.removeAll
+        {
+            $0.id == id
+        }
     }
 
     func Invoke()
     {
-        let copy = handlers;
-        copy.forEach { $0.handler() }
+        let copy = handlers; copy.forEach
+    {
+        $0.handler()
+    }
     }
 }
 
@@ -41,13 +46,18 @@ class Event<T>: BaseEvent
 
     override func RemoveListener(_ id: UUID)
     {
-        handlersWithArg.removeAll { $0.id == id }
+        handlersWithArg.removeAll
+        {
+            $0.id == id
+        }
     }
 
     func Invoke(_ value: T)
     {
-        let copy = handlersWithArg;
-        copy.forEach { $0.handler(value) }
+        let copy = handlersWithArg; copy.forEach
+    {
+        $0.handler(value)
+    }
     }
 }
 

@@ -8,7 +8,8 @@
 
 import Foundation
 
-public enum DevicePlatform {
+public enum DevicePlatform
+{
     case Unknown
     case iOS
     case Android

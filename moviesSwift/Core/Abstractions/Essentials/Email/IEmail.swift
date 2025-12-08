@@ -3,11 +3,15 @@ import Foundation
 /**
  * Provides an easy way to allow the user to send emails.
  */
-protocol IEmail {
+protocol IEmail
+{
     /**
      * Gets a value indicating whether composing an email is supported on this device.
      */
-    var IsComposeSupported: Bool { get }
+    var IsComposeSupported: Bool
+    {
+        get
+    }
 
     /**
      * Opens the default email client to allow the user to send the message.
