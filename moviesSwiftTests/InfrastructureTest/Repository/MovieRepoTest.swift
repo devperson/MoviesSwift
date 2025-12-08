@@ -1,8 +1,8 @@
 import XCTest
 @testable import moviesSwift
 
-final class MovieRepoTest: RepoDi {
-
+final class MovieRepoTest: XCTestCase
+{
     // Equivalent to Kotlin companion object
     static var newId: Int = 1
 
