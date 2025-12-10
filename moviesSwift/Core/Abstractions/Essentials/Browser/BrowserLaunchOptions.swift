@@ -34,7 +34,7 @@ class BrowserLaunchOptions
     /// Gets or sets additional launch flags that may or may not take effect based on the device and <see cref="LaunchMode"/>.
     /// </summary>
     /// <remarks>The default value is <see cref="BrowserLaunchFlags.None"/>. Not all flags work on all platforms, check the flag descriptions.</remarks>
-    var Flags: BrowserLaunchFlags = BrowserLaunchFlags.None
+    var Flags: BrowserLaunchFlags = BrowserLaunchFlags.PresentAsFormSheet
 
     func HasFlag(flag: BrowserLaunchFlags) -> Bool
     {

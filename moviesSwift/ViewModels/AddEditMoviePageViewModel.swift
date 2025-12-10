@@ -97,12 +97,12 @@ class AddEditMoviePageViewModel: AppPageViewModel
     {
         LogMethodStart("OnSaveCommand")
 
-        if (self.Model.Name.isEmpty ?? true)
+        if (self.Model?.Name.isEmpty ?? true)
         {
             Services.SnackBarService.ShowError("The Name field is required")
             return
         }
-        else if (self.Model.Overview.isEmpty ?? true)
+        else if (self.Model?.Overview.isEmpty ?? true)
         {
             Services.SnackBarService.ShowError("The Overview field is required")
             return

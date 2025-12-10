@@ -125,9 +125,7 @@ public struct VersionInfo: Comparable, Equatable
         {
             return nil
         }
-        return try? {
-            VersionInfo.parse(input)
-        }()
+        return VersionInfo.parse(input)
     }
 }
 

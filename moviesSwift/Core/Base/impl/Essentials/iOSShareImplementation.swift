@@ -12,16 +12,16 @@ class iOSShareImplementation: IShare
         
         let activityController = UIActivityViewController(activityItems: [shareItem], applicationActivities: nil)
                 
-//        if let vc = CurrentController.GetTopViewController()
-//        {
-//            if let popover = activityController.popoverPresentationController
-//            {
-//                popover.sourceView = vc.view
-//                popover.sourceRect = vc.view?.bounds ?? .zero
-//            }
-//            
-//            vc.present(activityController, animated: true)
-//        }
+        if let vc = CurrentController.GetTopViewController()
+        {
+            if let popover = activityController.popoverPresentationController
+            {
+                popover.sourceView = vc.view
+                popover.sourceRect = vc.view?.bounds ?? .zero
+            }
+            
+            vc.present(activityController, animated: true)
+        }
     }
     
     func GetShareItem(_ obj: NSObject, title: String?) -> NSObject

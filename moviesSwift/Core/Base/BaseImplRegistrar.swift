@@ -44,7 +44,8 @@ extension Resolver
         register { Sui_MediaPickerService() as IMediaPickerService }.scope(.application)
         register { iOSConsoleOutput() as IPlatformOutput }.scope(.application)
         register { iOSFileLogger() as IFileLogger }.scope(.application)
-        register { iOSErrorTrackingService() as IErrorTrackingService }.scope(.application)        
+        //register { iOSErrorTrackingService() as IErrorTrackingService }.scope(.application)
+        register { BusyIndicatorManager.shared as IBusyIndicatorService }.scope(.application)
     }
     
 

@@ -103,10 +103,10 @@ class Sui_MediaPickerService: NSObject, IMediaPickerService
                     presentGalleryPicker(options: options)
                 case .camera:
                     presentCameraPicker(options: options)
-                default:
-                    logger.LogWarning("\(TAG)pickImage() - Unknown MediaSource: \(source)")
-                    cont.resume(returning: nil)
-                    self.continuation = nil
+//                default:
+//                    logger.LogWarning("\(TAG)pickImage() - Unknown MediaSource: \(source)")
+//                    cont.resume(returning: nil)
+//                    self.continuation = nil
             }
         }
     }

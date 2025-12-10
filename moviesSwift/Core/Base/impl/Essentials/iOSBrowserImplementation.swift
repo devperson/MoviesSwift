@@ -33,7 +33,7 @@ class IOSBrowserImplementation: IBrowser
 
         let safariVC = SFSafariViewController(url: nativeUrl, configuration: config)
 
-        //guard let vc = CurrentController.GetTopViewController() else { return }
+        guard let vc = CurrentController.GetTopViewController() else { return }
 
         
         // Toolbar color
@@ -48,7 +48,7 @@ class IOSBrowserImplementation: IBrowser
 
         // Popover source
         if let popover = safariVC.popoverPresentationController {
-            //popover.sourceView = vc.view
+            popover.sourceView = vc.view
         }
 
         // Presentation style
@@ -60,6 +60,6 @@ class IOSBrowserImplementation: IBrowser
             safariVC.modalPresentationStyle = .pageSheet
         }
 
-        //vc.present(safariVC, animated: true)
+        vc.present(safariVC, animated: true)
     }
 }
