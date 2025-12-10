@@ -105,7 +105,7 @@ open class RestService: LoggableService
             }
 
             let fullUrl = "\(self.constants.ServerUrlHost)\(restRequest.ApiEndpoint)"
-            let token = await self.authTokenService.GetToken()
+            let token = try await self.authTokenService.GetToken()
 
             var jsonBody: String? = nil
             if let body = restRequest.RequestBody

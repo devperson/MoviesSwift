@@ -1,6 +1,6 @@
 import Foundation
 
-struct NavPageInfo
+struct NavPageInfoUiKit
 {
     let vmName: String
     let createPageFactory: () -> IPage

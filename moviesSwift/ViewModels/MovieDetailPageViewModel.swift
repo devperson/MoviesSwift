@@ -1,7 +1,9 @@
 import Foundation
 import Resolver
+import Observation
 
-@objcMembers class MovieDetailPageViewModel: AppPageViewModel
+@Observable
+class MovieDetailPageViewModel: AppPageViewModel
 {
     static let PhotoChangedEvent: String = "PhotoChanged"
 

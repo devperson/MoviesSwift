@@ -13,9 +13,9 @@ final class AuthTokenService: LoggableService, IAuthTokenService
 
     // MARK: - IAuthTokenService
 
-    func GetToken() async -> String?
+    func GetToken() async throws -> String?
     {
-        let tokenDetails = await GetAuthTokenDetails()
+        let tokenDetails = try await GetAuthTokenDetails()
         return tokenDetails?.Token ?? ""
     }
 
@@ -23,7 +23,7 @@ final class AuthTokenService: LoggableService, IAuthTokenService
     {
         if authToken == nil
         {
-            authToken = await GetAuthTokenDetails()
+            authToken = try await GetAuthTokenDetails()
         }
 
         guard let authToken = authToken
@@ -50,13 +50,13 @@ final class AuthTokenService: LoggableService, IAuthTokenService
         }
     }
 
-    func SaveAuthTokenDetails(_ authToken: AuthTokenDetails?) async
+    func SaveAuthTokenDetails(_ authToken: AuthTokenDetails?) async throws
     {
         do
         {
             let data = try JSONEncoder().encode(authToken)
             let jsonString = String(data: data, encoding: .utf8) ?? ""
-            preferencesService.Set(Self.AUTH_KEY, jsonString)
+            try preferencesService.Set(Self.AUTH_KEY, jsonString)
         }
         catch
         {
@@ -64,9 +64,9 @@ final class AuthTokenService: LoggableService, IAuthTokenService
         }
     }
 
-    func GetAuthTokenDetails() async -> AuthTokenDetails?
+    func GetAuthTokenDetails() async throws -> AuthTokenDetails?
     {
-        let authTokenJson = preferencesService.Get(Self.AUTH_KEY, defaultValue: "")
+        let authTokenJson = try preferencesService.Get(Self.AUTH_KEY, defaultValue: "")
         guard !authTokenJson.isEmpty
         else
         {

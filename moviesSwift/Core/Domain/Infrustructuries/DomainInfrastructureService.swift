@@ -1,6 +1,6 @@
 import Resolver
 
-class MyInfrastructureService : InfrastructureServices
+class DomainInfrastructureService : InfrastructureServices
 {
     @LazyInjected
     var dbInitilizer : ILocalDbInitilizer
@@ -9,7 +9,7 @@ class MyInfrastructureService : InfrastructureServices
     {
         LogMethodStart(#function);
         try await super.Start()
-        try await dbInitilizer.InitDb()
+        try dbInitilizer.InitDb()
     }
 
     override func Pause() async
@@ -28,7 +28,7 @@ class MyInfrastructureService : InfrastructureServices
     {
         LogMethodStart(#function);
         await super.Stop()
-        await dbInitilizer.Release()
+        dbInitilizer.Release()
     }
 
 }

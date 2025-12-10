@@ -3,11 +3,11 @@ import Foundation
 protocol IFileLogger
 {
     func Init()
-    func Info(_ message: String)
-    func Warn(_ message: String)
-    func Error(_ message: String)
-    func GetCompressedLogsSync(getOnlyLastSession: Bool) async -> Data?
-    func GetLogListAsync() async -> [String]
+    func Info(message: String)
+    func Warn(message: String)
+    func Error(message: String)
+    func GetCompressedLogsSync(getOnlyLastSession: Bool) async throws -> Data?
+    func GetLogListAsync() async throws -> [String]
     func GetLogsFolder() -> String
     func GetCurrentLogFileName() -> String
 }

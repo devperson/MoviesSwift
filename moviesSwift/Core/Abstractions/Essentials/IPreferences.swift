@@ -13,8 +13,8 @@ public protocol IPreferences
     func Clear()
 
     /// Sets a value for a given key.
-    func Set<T>(_ key: String, _ value: T)
+    func Set<T>(_ key: String, _ value: T?) throws
 
     /// Gets the value for a given key, or the default specified if the key does not exist.
-    func Get<T>(_ key: String, defaultValue: T) -> T
+    func Get<T>(_ key: String, defaultValue: T) throws-> T
 }

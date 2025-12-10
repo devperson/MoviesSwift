@@ -1,6 +1,8 @@
 import Foundation
 import Resolver
+import Observation
 
+@Observable
 class AddEditMoviePageViewModel: AppPageViewModel
 {
     static let NEW_ITEM: String = "newItem"
@@ -9,8 +11,8 @@ class AddEditMoviePageViewModel: AppPageViewModel
     static let PhotoChangedEvent: String = "PhotoChanged"
     static let SELECTED_ITEM: String = "selectedItem"
 
-    @LazyInjected var movieService: IMovieService
-    @LazyInjected var mediaPickerService: IMediaPickerService
+    @ObservationIgnored @LazyInjected var movieService: IMovieService
+    @ObservationIgnored @LazyInjected var mediaPickerService: IMediaPickerService
 
     var SaveCommand: AsyncCommand!
     var ChangePhotoCommand: AsyncCommand!
@@ -48,40 +50,47 @@ class AddEditMoviePageViewModel: AppPageViewModel
 
     func OnChangePhotoCommand(_ arg: Any?) async
     {
-        LogMethodStart(#function, arg)
-        let deleteText = (!(self.Model.PosterUrl?.isEmpty ?? true)) ? "Delete" : nil
-
-        let buttons = ["Pick Photo", "Take Photo"]
-        let actionResult = await Services.AlertDialogService.DisplayActionSheet(title: "Set photo from", cancel: "Cancel", destruction: deleteText, buttons: buttons)
-
-        if actionResult == buttons[0]
+        do
         {
-            if let photo = await mediaPickerService.GetPhotoAsync(options: MediaOptions())
-            {
-                self.Model.PosterUrl = photo.FilePath
-            }
-            else
-            {
-                Services.LoggingService.LogWarning("AddEditMoviePageViewModel: GetPhotoAsync() returned null")
-            }
-        }
-        else if actionResult == buttons[1]
-        {
-            if let photo = await mediaPickerService.TakePhotoAsync(options: MediaOptions())
-            {
-                self.Model.PosterUrl = photo.FilePath
-            }
-            else
-            {
-                Services.LoggingService.LogWarning("AddEditMoviePageViewModel: TakePhotoAsync() returned null")
-            }
-        }
-        else if actionResult == deleteText
-        {
-            self.Model.PosterUrl = nil
-        }
+            LogMethodStart(#function, arg)
+            let deleteText = (!(self.Model.PosterUrl?.isEmpty ?? true)) ? "Delete" : nil
 
-        PhotoChanged = UUID()//this will notify the UI that the photo has changed
+            let buttons = ["Pick Photo", "Take Photo"]
+            let actionResult = try await Services.AlertDialogService.DisplayActionSheet(title: "Set photo from", cancel: "Cancel", destruction: deleteText, buttons: buttons)
+
+            if actionResult == buttons[0]
+            {
+                if let photo = try await mediaPickerService.GetPhotoAsync(options: MediaOptions())
+                {
+                    self.Model.PosterUrl = photo.FilePath
+                }
+                else
+                {
+                    Services.LoggingService.LogWarning("AddEditMoviePageViewModel: GetPhotoAsync() returned null")
+                }
+            }
+            else if actionResult == buttons[1]
+            {
+                if let photo = try await mediaPickerService.TakePhotoAsync(options: MediaOptions())
+                {
+                    self.Model.PosterUrl = photo.FilePath
+                }
+                else
+                {
+                    Services.LoggingService.LogWarning("AddEditMoviePageViewModel: TakePhotoAsync() returned null")
+                }
+            }
+            else if actionResult == deleteText
+            {
+                self.Model.PosterUrl = nil
+            }
+
+            PhotoChanged = UUID()//this will notify the UI that the photo has changed
+        }
+        catch
+        {
+           Services.LoggingService.TrackError(error)
+        }
     }
 
     func OnSaveCommand(_ arg: Any?) async
@@ -124,22 +133,30 @@ class AddEditMoviePageViewModel: AppPageViewModel
 
     func OnDeleteCommand(_ arg: Any?) async
     {
-        LogMethodStart("OnDeleteCommand")
-        let res = await Services.AlertDialogService.ConfirmAlert(title: "Confirm", message: "Are you sure you want to delete this item?", buttons: ["Yes", "No"])
-
-        if res == true
+        do
         {
-            let dtoModel = self.Model.ToDto()
-            let result = await movieService.RemoveAsync(dtoModel)
+            LogMethodStart(#function)
+            let res = try await Services.AlertDialogService.ConfirmAlert(title: "Confirm", message: "Are you sure you want to delete this item?", buttons: ["Yes", "No"])
 
-            if result.Success
+            if res == true
             {
-                await NavigateToRoot(NavigationParameters().With(AddEditMoviePageViewModel.REMOVE_ITEM, self.Model))
-            }
-            else
-            {
-                Services.SnackBarService.ShowError(CommonStrings.GeneralError)
+                let dtoModel = self.Model.ToDto()
+                let result = await movieService.RemoveAsync(dtoModel)
+
+                if result.Success
+                {
+                    await NavigateToRoot(NavigationParameters().With(AddEditMoviePageViewModel.REMOVE_ITEM, self.Model))
+                }
+                else
+                {
+                    Services.SnackBarService.ShowError(CommonStrings.GeneralError)
+                }
             }
         }
+        catch
+        {
+            Services.LoggingService.TrackError(error)
+        }
+        
     }
 }

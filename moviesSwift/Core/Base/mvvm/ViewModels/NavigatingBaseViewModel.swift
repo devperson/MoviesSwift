@@ -33,14 +33,30 @@ class NavigatingBaseViewModel: BaseViewModel, INavigationAware
 
     func Navigate(_ name: String, _ parameters: INavigationParameters? = nil, useModalNavigation: Bool = false, animated: Bool = true, wrapIntoNav: Bool = false) async
     {
-        LogVirtualBaseMethod("Navigate(name=\(name))")
-        await injectedServices.NavigationService.Navigate(name, parameters: parameters, useModalNavigation: useModalNavigation, animated: animated, wrapIntoNav: wrapIntoNav)
+        do
+        {
+            LogVirtualBaseMethod("Navigate(name=\(name))")
+            try await injectedServices.NavigationService.Navigate(name, parameters: parameters, useModalNavigation: useModalNavigation, animated: animated, wrapIntoNav: wrapIntoNav)
+        }
+        catch
+        {
+            injectedServices.LoggingService.TrackError(error)
+        }
+        
+        
     }
 
     func NavigateToRoot(_ parameters: INavigationParameters? = nil) async
     {
-        LogVirtualBaseMethod(#function)
-        await injectedServices.NavigationService.NavigateToRoot(parameters: parameters)
+        do
+        {
+            LogVirtualBaseMethod(#function)
+            try await injectedServices.NavigationService.NavigateToRoot(parameters: parameters)
+        }
+        catch
+        {
+            injectedServices.LoggingService.TrackError(error)
+        }
     }
 
     func SkipAndNavigate(_ skipCount: Int, route: String, parameters: INavigationParameters? = nil) async

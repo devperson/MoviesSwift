@@ -72,7 +72,7 @@ class AppLoggingService: LoggableService, ILoggingService
             RowNumber += 1
             let tag = GetLogAppTag(appLaunchCount: AppLaunchCount, rowNumber: RowNumber)
             let formatted = "\(tag) INFO:\(message)"
-            fileLogger.Info(formatted)
+            fileLogger.Info(message: formatted)
             platformConsole.Info(formatted)
         }
     }
@@ -84,7 +84,7 @@ class AppLoggingService: LoggableService, ILoggingService
             RowNumber += 1
             let tag = GetLogAppTag(appLaunchCount: AppLaunchCount, rowNumber: RowNumber)
             let formatted = "\(tag) WARNING:\(message)"
-            fileLogger.Warn(formatted)
+            fileLogger.Warn(message: formatted)
             platformConsole.Warn(formatted)
         }
     }
@@ -105,21 +105,21 @@ class AppLoggingService: LoggableService, ILoggingService
             }
             formatted += String(describing: ex)
 
-            fileLogger.Warn(formatted)
+            fileLogger.Warn(message: formatted)
             platformConsole.Error(formatted)
         }
     }
 
-    func CreateSpecificLogger(key: String) -> ILogging
+    func CreateSpecificLogger(key: String) throws -> ILogging
     {
-        return ConditionalLogger(key: key, logger: self, preferences: preferences)
+        return try ConditionalLogger(key: key, logger: self, preferences: preferences)
     }
 
     func Header(_ headerMessage: String)
     {
         SafeCall
         {
-            fileLogger.Info(headerMessage)
+            fileLogger.Info(message: headerMessage)
             platformConsole.Info(headerMessage)
         }
     }
@@ -148,14 +148,14 @@ class AppLoggingService: LoggableService, ILoggingService
         SafeCall
         {
             let msg = "********************************\(INDICATOR_TAG)\(name)*************************************"
-            fileLogger.Info(msg)
+            fileLogger.Info(message: msg)
             platformConsole.Info(msg)
         }
     }
 
-    func GetSomeLogTextAsync() async -> String
+    func GetSomeLogTextAsync() async throws -> String
     {
-        let lines = await fileLogger.GetLogListAsync()
+        let lines = try await fileLogger.GetLogListAsync()
         return lines.joined(separator: "\n")
     }
 
@@ -169,31 +169,39 @@ class AppLoggingService: LoggableService, ILoggingService
         return fileLogger.GetCurrentLogFileName()
     }
 
-    func GetLastSessionLogBytes() async -> Data?
+    func GetLastSessionLogBytes() async throws -> Data?
     {
-        return await fileLogger.GetCompressedLogsSync(getOnlyLastSession: true)
+        return try await fileLogger.GetCompressedLogsSync(getOnlyLastSession: true)
     }
 
-    func GetCompressedLogFileBytes(getOnlyLastSession: Bool) async -> Data?
+    func GetCompressedLogFileBytes(getOnlyLastSession: Bool) async throws -> Data?
     {
-        return await fileLogger.GetCompressedLogsSync(getOnlyLastSession: getOnlyLastSession)
+        return try await fileLogger.GetCompressedLogsSync(getOnlyLastSession: getOnlyLastSession)
     }
 
     private func GetLaunchCount() -> Int
     {
-        var launchCount = preferences.Get("AppLaunchCount", defaultValue: -1)
-        if launchCount != -1
+        do
         {
-            launchCount += 1
+            var launchCount = try preferences.Get("AppLaunchCount", defaultValue: -1)
+            if launchCount != -1
+            {
+                launchCount += 1
 
+            }
+            else
+            {
+                launchCount = 0
+            }
+
+            try preferences.Set("AppLaunchCount", launchCount)
+            return launchCount
         }
-        else
+        catch
         {
-            launchCount = 0
+            platformConsole.Error("Failed to get or set AppLaunchCount preference: \(error)")
+            return 0
         }
-
-        preferences.Set("AppLaunchCount", launchCount)
-        return launchCount
     }
 
     private func GetLogAppTag(appLaunchCount: Int, rowNumber: Int64) -> String
@@ -314,12 +322,12 @@ class ConditionalLogger: ILogging
     private let preferences: IPreferences
     private let canLog: Bool
 
-    init(key: String, logger: ILogging, preferences: IPreferences)
+    init(key: String, logger: ILogging, preferences: IPreferences) throws
     {
         self.key = key
         self.logger = logger
         self.preferences = preferences
-        self.canLog = preferences.Get(key, defaultValue: false)
+        self.canLog = try preferences.Get(key, defaultValue: false)
     }
 
     func Log(_ message: String)

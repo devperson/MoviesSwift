@@ -9,7 +9,7 @@ class AppLogExporter: LoggableService, IAppLogExporter
     private let KyChat_Logs = "KyChat_Logs"
 
 
-    func ShareLogs() async -> LogSharingResult
+    func ShareLogs() async throws-> LogSharingResult
     {
         LogMethodStart(#function)
 
@@ -26,7 +26,7 @@ class AppLogExporter: LoggableService, IAppLogExporter
         // this.CopyCensoredDatabaseAsync()
 
         // try to get compressed logs from logging service
-        let compressedLogs = await loggingService.GetCompressedLogFileBytes(getOnlyLastSession: true)
+        let compressedLogs = try await loggingService.GetCompressedLogFileBytes(getOnlyLastSession: true)
 
         if compressedLogs == nil
         {

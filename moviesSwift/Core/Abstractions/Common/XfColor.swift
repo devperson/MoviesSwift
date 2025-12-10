@@ -1,6 +1,6 @@
 import Foundation
-
-final class XfColor: Equatable, Hashable, CustomStringConvertible
+ 
+public final class XfColor: Equatable, Hashable, CustomStringConvertible
 {
 
     // MARK: - Mode
@@ -189,7 +189,7 @@ final class XfColor: Equatable, Hashable, CustomStringConvertible
 
     // MARK: - Equatable / equality
 
-    static func ==(lhs: XfColor, rhs: XfColor) -> Bool
+    public static func ==(lhs: XfColor, rhs: XfColor) -> Bool
     {
         return EqualsInner(lhs, rhs)
     }
@@ -214,7 +214,7 @@ final class XfColor: Equatable, Hashable, CustomStringConvertible
 
     // MARK: - Hashable
 
-    func hash(into hasher: inout Hasher)
+    public func hash(into hasher: inout Hasher)
     {
         // Match structure of Kotlin hashCode (not exact numeric value, but same fields)
         var hashcode = _r.hashValue
@@ -226,7 +226,7 @@ final class XfColor: Equatable, Hashable, CustomStringConvertible
 
     // MARK: - ToString / description
 
-    var description: String
+    public var description: String
     {
         return "[Color: A=\(A), R=\(R), G=\(G), B=\(B), Hue=\(Hue), Saturation=\(Saturation), Luminosity=\(Luminosity)]"
     }

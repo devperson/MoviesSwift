@@ -40,14 +40,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "DCFA78EF-FCA7-4FAB-8BDA-2231879C6288"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "moviesSwift/Core/Base/impl/Diagnostic/AppLoggingService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
             landmarkName = "GetMethodNameWithParameters(className:funcName:args:)"
             landmarkType = "7">
          </BreakpointContent>

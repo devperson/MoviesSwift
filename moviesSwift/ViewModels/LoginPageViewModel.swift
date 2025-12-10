@@ -1,9 +1,11 @@
 import Foundation
 import Resolver
+import Observation
 
-@objcMembers class LoginPageViewModel: AppPageViewModel
+@Observable
+class LoginPageViewModel: AppPageViewModel
 {
-    @LazyInjected var preferenceServices: IPreferences
+    @ObservationIgnored @LazyInjected var preferenceServices: IPreferences
     static let LogoutRequest = "LogoutRequest"
     static let IsLoggedIn = "IsLoggedIn"
 
@@ -20,19 +22,35 @@ import Resolver
 
     override func Initialize(_ parameters: INavigationParameters)
     {
-        LogMethodStart(#function)
-        super.Initialize(parameters)
-
-        if parameters.ContainsKey(LoginPageViewModel.LogoutRequest)
+        do
         {
-            preferenceServices.Set(LoginPageViewModel.IsLoggedIn, false)
+            LogMethodStart(#function)
+            super.Initialize(parameters)
+            
+            if parameters.ContainsKey(LoginPageViewModel.LogoutRequest)
+            {
+                try preferenceServices.Set(LoginPageViewModel.IsLoggedIn, false)
+            }
+        }
+        catch
+        {
+            Services.LoggingService.TrackError(error)
         }
     }
 
     func OnSubmitCommand(_ arg: Any?) async
     {
-        LogMethodStart(#function)
-        preferenceServices.Set(LoginPageViewModel.IsLoggedIn, true)
-        await Services.NavigationService.Navigate("/\(NameOf(MoviesPageViewModel.self))")
+        do
+        {
+            LogMethodStart(#function)
+            try preferenceServices.Set(LoginPageViewModel.IsLoggedIn, true)
+            await Navigate("/\(NameOf(MoviesPageViewModel.self))")
+        }
+        catch
+        {
+            Services.LoggingService.TrackError(error)
+        }
+        
+        
     }
 }

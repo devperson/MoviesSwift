@@ -14,11 +14,11 @@ open class LoggableService
     }
 
     // MARK: - Specific Logger Initialization
-    func initSpecificLogger(_ key: String)
+    func initSpecificLogger(_ key: String) throws
     {
         if !specificLoggerInitialized
         {
-            specificLogger = loggingService.CreateSpecificLogger(key: key)
+            specificLogger = try loggingService.CreateSpecificLogger(key: key)
             specificLoggerInitialized = true
         }
     }

@@ -2,9 +2,9 @@ import Foundation
 
 // Converted NavRegistrar: a lightweight Swift registrar to map ViewModel names to page/viewmodel factories.
 // Note: original Kotlin implementation used Koin; this Swift version is a simple registry.
-class NavRegistrar
+class NavRegistrarUiKit
 {
-    public var navPages: [NavPageInfo] = []
+    public var navPages: [NavPageInfoUiKit] = []
 
     func RegisterPageForNavigation<TPage: IPage, TVm: PageViewModel>(vmName: String, createPage: @escaping () -> TPage, createViewModel: @escaping () -> TVm) throws
     {
@@ -12,7 +12,7 @@ class NavRegistrar
         {
             throw NSError(domain: "NavRegistrar", code: 1, userInfo: [NSLocalizedDescriptionKey: "ViewModel '\(vmName)' was already registered for navigation."])
         }
-        let info = NavPageInfo(vmName: vmName, createPageFactory: { createPage() as IPage }, createVmFactory: { createViewModel() as PageViewModel })
+        let info = NavPageInfoUiKit(vmName: vmName, createPageFactory: { createPage() as IPage }, createVmFactory: { createViewModel() as PageViewModel })
 
         navPages.append(info)
     }

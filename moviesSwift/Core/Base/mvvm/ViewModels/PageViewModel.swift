@@ -1,13 +1,14 @@
 import Foundation
 import Resolver
+import Observation
 
 @Observable
 class PageViewModel: NavigatingBaseViewModel, IPageLifecycleAware
 {
-    
     private var appResumedEvent: AppResumedEvent!
     private var appPausedEvent: AppPausedEvent!
-
+    var busyIndicatorService: IBusyIndicatorService!
+    
     override init(_ injectedService: InjectedService)
     {
         super.init(injectedService)
@@ -17,6 +18,7 @@ class PageViewModel: NavigatingBaseViewModel, IPageLifecycleAware
         appPausedEvent = GetEvent({ AppPausedEvent() })
         appResumedEvent.Subscribe(InstanceId, ResumedFromBackground(_:))
         appPausedEvent.Subscribe(InstanceId, PausedToBackground(_:))
+        busyIndicatorService = ContainerLocator.Resolve()
     }
 
     var InstanceId = UUID()
@@ -24,7 +26,17 @@ class PageViewModel: NavigatingBaseViewModel, IPageLifecycleAware
     var Title: String = ""
     var IsPageVisable: Bool = false
     var IsFirstTimeAppears: Bool = true
-    var BusyLoading: Bool = false
+    var BusyText: String = "Loading..."
+    var busyIndicator = false
+    var BusyLoading: Bool
+    {
+        get { busyIndicator }
+        set
+        {
+            busyIndicator = newValue
+            busyIndicatorService.show(BusyText)
+        }
+    }
     var DisableDeviceBackButton: Bool = false
 
 

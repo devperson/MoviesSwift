@@ -25,12 +25,12 @@ protocol ILoggingService: ILogging
     func LogError(_ ex: Error, message: String, handled: Bool)
     func TrackError(_ ex: Error, data: [String: String]?)
     func LogUnhandledError(_ ex: Error)
-    func GetCompressedLogFileBytes(getOnlyLastSession: Bool) async -> Data?
-    func GetSomeLogTextAsync() async -> String
+    func GetCompressedLogFileBytes(getOnlyLastSession: Bool) async throws -> Data?
+    func GetSomeLogTextAsync() async throws-> String
     func GetLogsFolder() -> String
     func GetCurrentLogFileName() -> String
-    func GetLastSessionLogBytes() async -> Data?
-    func CreateSpecificLogger(key: String) -> ILogging
+    func GetLastSessionLogBytes() async throws -> Data?
+    func CreateSpecificLogger(key: String) throws -> ILogging
 }
 
 extension ILoggingService
