@@ -18,14 +18,14 @@ protocol ILocalDbInitilizer
     func GetDbDir() throws -> String
 
     func GetDbConnection() throws -> Any
-    func InitDb() async throws
-    func Release(closeConnection: Bool) async
+    func InitDb() throws
+    func Release(closeConnection: Bool)
 }
 
 extension ILocalDbInitilizer
 {
-    func Release(closeConnection: Bool = false) async
+    func Release()
     {
-        await Release(closeConnection: closeConnection)
+        self.Release(closeConnection: false)
     }
 }

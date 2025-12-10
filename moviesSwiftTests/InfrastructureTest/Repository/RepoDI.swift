@@ -8,6 +8,9 @@ class RepoDi: XCTestCase
     override func setUpWithError() throws
     {
         Resolver.RegisterTypes()
+        
+        let dbInitilizer: ILocalDbInitilizer = ContainerLocator.Resolve()
+        try! dbInitilizer.InitDb()
     }
 
     override func tearDownWithError() throws
@@ -21,6 +24,7 @@ extension Resolver
     static func RegisterTypes()
     {
         register { MockLogger() as ILoggingService }.scope(.application)
+        register { iOSDirectoryService() as IDirectoryService }.scope(.application)
         register { DbInitializer() as ILocalDbInitilizer }.scope(.application)
         register { RepoMovieMapper() as any IRepoMapper<Movie, MovieTb> }.scope(.application)
         register { MovieRepository() as any IRepository<Movie> }.scope(.application)

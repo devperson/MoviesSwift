@@ -7,7 +7,7 @@ class BaseRepository<TEntity: IEntity, Tb>: LoggableService, IRepository where T
     @LazyInjected private var mapper: any IRepoMapper<TEntity, Tb>
     @LazyInjected private var dbInitializer: ILocalDbInitilizer
 
-    private var realm: Realm?
+    //private var realm: Realm?
     private let tableType: Tb.Type
 
     init(tableType: Tb.Type)
@@ -15,23 +15,22 @@ class BaseRepository<TEntity: IEntity, Tb>: LoggableService, IRepository where T
         self.tableType = tableType
     }
 
-    private func EnsureInitialized() throws
+    private func GetRealm() throws -> Realm
     {
-        if realm == nil
+        if let realm = try dbInitializer.GetDbConnection() as? Realm
         {
-            realm = try dbInitializer.GetDbConnection() as? Realm
+            return realm
+        }
+        else
+        {
+            throw RepositoryException("BaseRepository: Failed to get Realm database connection: dbInitializer.GetDbConnection() returned nil or not a realm instance.")
         }
     }
 
     private func GetNextId() throws -> Int
     {
         LogMethodStart(#function)
-        try EnsureInitialized()
-        guard let realm
-        else
-        {
-            return 1
-        }
+        let realm = try GetRealm()
 
         let maxId = realm.objects(Tb.self).max(ofProperty: "Id") as Int? ?? 0
         return maxId == 0 ? 1 : maxId + 1
@@ -42,12 +41,7 @@ class BaseRepository<TEntity: IEntity, Tb>: LoggableService, IRepository where T
     func GetListAsync(count: Int, skip: Int) async throws -> [TEntity]
     {
         LogMethodStart(#function, count, skip)
-        try EnsureInitialized()
-        guard let realm
-        else
-        {
-            return []
-        }
+        let realm = try GetRealm()
 
         if count > 0
         {
@@ -77,12 +71,7 @@ class BaseRepository<TEntity: IEntity, Tb>: LoggableService, IRepository where T
     func AddAsync(_ entity: TEntity) async throws -> Int
     {
         LogMethodStart(#function, entity)
-        try EnsureInitialized()
-        guard let realm
-        else
-        {
-            return 0
-        }
+        let realm = try GetRealm()
 
         var entity = entity
         entity.Id = try GetNextId()
@@ -100,12 +89,7 @@ class BaseRepository<TEntity: IEntity, Tb>: LoggableService, IRepository where T
     func AddAllAsync(_ entities: [TEntity]) async throws -> Int
     {
         LogMethodStart(#function, entities)
-        try EnsureInitialized()
-        guard let realm
-        else
-        {
-            return 0
-        }
+        let realm = try GetRealm()
 
         var lastId = -1
 
@@ -136,12 +120,7 @@ class BaseRepository<TEntity: IEntity, Tb>: LoggableService, IRepository where T
     func FindById(_ id: Int) async throws -> TEntity?
     {
         LogMethodStart(#function, id)
-        try EnsureInitialized()
-        guard let realm
-        else
-        {
-            return nil
-        }
+        let realm = try GetRealm()
 
         return realm.object(ofType: Tb.self, forPrimaryKey: id).map
         {
@@ -152,13 +131,7 @@ class BaseRepository<TEntity: IEntity, Tb>: LoggableService, IRepository where T
     func UpdateAsync(_ entity: TEntity) async throws -> Int
     {
         LogMethodStart(#function, entity)
-        try EnsureInitialized()
-        guard let realm
-        else
-        {
-            return 0
-        }
-
+        let realm = try GetRealm()
         var updated = false
 
         try realm.write
@@ -176,13 +149,7 @@ class BaseRepository<TEntity: IEntity, Tb>: LoggableService, IRepository where T
     func RemoveAsync(_ entity: TEntity) async throws -> Int
     {
         LogMethodStart(#function, entity)
-        try EnsureInitialized()
-        guard let realm
-        else
-        {
-            return 0
-        }
-
+        let realm = try GetRealm()
         var removed = false
 
         try realm.write
@@ -200,12 +167,7 @@ class BaseRepository<TEntity: IEntity, Tb>: LoggableService, IRepository where T
     func ClearAsync(reason: String) async throws -> Int
     {
         LogMethodStart(#function, reason)
-        try EnsureInitialized()
-        guard let realm
-        else
-        {
-            return 0
-        }
+        let realm = try GetRealm()
 
         var deleted = 0
 
@@ -219,3 +181,15 @@ class BaseRepository<TEntity: IEntity, Tb>: LoggableService, IRepository where T
         return deleted
     }
 }
+
+struct RepositoryException: IException
+{
+    let Message: String
+    
+    init(_ message: String)
+    {
+        self.Message = message
+    }
+}
+
+

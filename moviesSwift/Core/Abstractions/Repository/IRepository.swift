@@ -10,6 +10,7 @@ protocol IRepository<TEntity>
     func AddAsync(_ entity: TEntity) async throws -> Int
     @discardableResult
     func UpdateAsync(_ entity: TEntity) async throws -> Int
+    @discardableResult
     func AddAllAsync(_ entities: [TEntity]) async throws -> Int
     func RemoveAsync(_ entity: TEntity) async throws -> Int
     func ClearAsync(reason: String) async throws -> Int

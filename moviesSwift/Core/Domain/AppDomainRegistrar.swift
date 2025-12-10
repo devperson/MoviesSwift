@@ -6,13 +6,13 @@ class AppDomainRegistrar
 {
     static func RegisterTypes()
     {
-        Resolver.RegisterDomainInfrastructureService()
+        Resolver.RegisterDomainServices()
     }
 }
 
 extension Resolver
 {
-    static func RegisterDomainInfrastructureService()
+    static func RegisterDomainServices()
     {
         register { DbInitializer() as ILocalDbInitilizer }.scope(.application)
         register { RepoMovieMapper() as any IRepoMapper<Movie, MovieTb> }.scope(.application)

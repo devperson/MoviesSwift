@@ -1,14 +1,14 @@
 import XCTest
 @testable import moviesSwift
 
-final class MovieRepoTest: XCTestCase
+final class MovieRepoTest: RepoDi
 {
     // Equivalent to Kotlin companion object
     static var newId: Int = 1
 
     // MARK: - T1_1 Add Movie Test
     func test_T1_1AddMovieTest() async throws
-    {
+    {        
         let movieRepo: any IRepository<Movie> = ContainerLocator.Resolve()
 
         let movieEntity = Movie.Create(
@@ -40,7 +40,7 @@ final class MovieRepoTest: XCTestCase
             "no url2"
         )
 
-        _ = try await movieRepo.AddAllAsync([movie1, movie2])
+        try await movieRepo.AddAllAsync([movie1, movie2])
 
         XCTAssertTrue(movie1.Id > 0, "new first id doesn't increment")
         XCTAssertTrue(movie2.Id > 0, "new second movie id doesn't increment")
@@ -110,5 +110,11 @@ final class MovieRepoTest: XCTestCase
         let list = try await movieRepo.GetListAsync()
         XCTAssertEqual(list.count, 0, "table still has data after clear()")
     }
+    
+//    func EnsureDbInited() async throws
+//    {
+//        let dbInitilizer: ILocalDbInitilizer = ContainerLocator.Resolve()
+//        try! await dbInitilizer.InitDb()
+//    }
 }
 
