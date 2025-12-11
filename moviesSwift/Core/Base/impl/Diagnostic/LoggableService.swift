@@ -9,8 +9,11 @@ open class LoggableService
     // MARK: - Method Logging
     func LogMethodStart(_ methodName: String, _ args: Any?...)
     {
+        //if methodName contains parameter part - (_:) then remove it and only get method name
+        //this can happen if we will use swift #function macro which gives method name with parameters
+        let cleanMethodName = methodName.split(separator: "(").first.map(String.init) ?? methodName
         let className = String(describing: type(of: self))
-        loggingService.LogMethodStarted(className: className, methodName: methodName, args: args)
+        loggingService.LogMethodStarted(className: className, methodName: cleanMethodName, args: args)
     }
 
     // MARK: - Specific Logger Initialization

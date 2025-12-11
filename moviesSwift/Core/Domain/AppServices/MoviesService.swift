@@ -48,12 +48,12 @@ class MoviesService : LoggableService, IMovieService
             }
             else
             {
-                loggingService.Log("MoviesService.GetListAsync(): loading from Remote server because canLoadLocal: $canLoadLocal")
+                loggingService.Log("MoviesService.GetListAsync(): loading from Remote server because canLoadLocal: \(canLoadLocal)")
                 //download all list
                 let remoteList = try await movieRestService.GetMovieRestlist();
-                _ = try await movieRepository.ClearAsync(reason: "MovieService: Delete all items requested when syncing");
-                _ = try await movieRepository.AddAllAsync(remoteList);
-                loggingService.Log("MoviesService.GetListAsync(): Sync completed deletedCount: $deletedCount, insertedCount: $insertedCount")
+                let deletedCount = try await movieRepository.ClearAsync(reason: "MovieService: Delete all items requested when syncing");
+                let insertedCount = try await movieRepository.AddAllAsync(remoteList);
+                loggingService.Log("MoviesService.GetListAsync(): Sync completed deletedCount: \(deletedCount), insertedCount: \(insertedCount)")
 
                 //return dto list
                 let dtoList = try remoteList.map{s in try s.ToDto() as! MovieDto};

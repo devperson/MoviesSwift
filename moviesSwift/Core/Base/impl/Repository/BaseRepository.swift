@@ -178,6 +178,7 @@ class BaseRepository<TEntity: IEntity, Tb>: LoggableService, IRepository where T
             realm.delete(all)
         }
 
+        loggingService.LogWarning("\(String(describing: type(of: self))): Cleared \(deleted) records from \(String(describing: Tb.self)): \(reason)")
         return deleted
     }
 }

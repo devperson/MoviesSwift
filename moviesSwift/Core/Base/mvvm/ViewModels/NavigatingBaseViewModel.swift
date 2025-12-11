@@ -136,6 +136,7 @@ class NavigatingBaseViewModel: BaseViewModel, INavigationAware
 
     func LogVirtualBaseMethod(_ methodName: String)
     {
+        //let cleanMethodName = methodName.split(separator: "(").first.map(String.init) ?? methodName
         injectedServices.LoggingService.Log("\(String(describing: type(of: self))).\(methodName)() (from base)")
     }
 }
