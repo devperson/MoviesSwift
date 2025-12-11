@@ -45,7 +45,7 @@ extension ILoggingService
         LogError(ex, message: "", handled: true)
     }
 
-    func TrackError(_ ex: Error, data: [String: String]? = nil)
+    func TrackError(_ ex: Error, _ data: [String: String]? = nil)
     {
         TrackError(ex, data: data)
     }

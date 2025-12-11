@@ -2,16 +2,11 @@ import Foundation
 import Resolver
 import Observation
 
-@Observable
 class LoginPageViewModel: AppPageViewModel
 {
-    @ObservationIgnored @LazyInjected var preferenceServices: IPreferences
+    @LazyInjected var preferenceServices: IPreferences
     static let LogoutRequest = "LogoutRequest"
     static let IsLoggedIn = "IsLoggedIn"
-
-    var SubmitCommand: AsyncCommand!
-    var Login: String = ""
-    var Password: String = ""
 
     override init(_ injectedService: PageInjectedServices)
     {
@@ -19,6 +14,11 @@ class LoginPageViewModel: AppPageViewModel
         super.init(injectedService)
         self.SubmitCommand = AsyncCommand(OnSubmitCommand)
     }
+    
+    var Login: String = ""
+    var Password: String = ""
+    //commands
+    var SubmitCommand: AsyncCommand!
 
     override func Initialize(_ parameters: INavigationParameters)
     {

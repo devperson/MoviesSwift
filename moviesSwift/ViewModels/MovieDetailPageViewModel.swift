@@ -2,22 +2,21 @@ import Foundation
 import Resolver
 import Observation
 
-@Observable
 class MovieDetailPageViewModel: AppPageViewModel
 {
-    static let PhotoChangedEvent: String = "PhotoChanged"
-
-    var EditCommand: AsyncCommand!
-    var Model: MovieItemViewModel?
-    var ItemUpdated: UUID = UUID()
-
+    public static let PhotoChangedEvent: String = "PhotoChanged"
+    
     override init(_ injectedService: PageInjectedServices)
     {
-
         super.init(injectedService)
         self.EditCommand = AsyncCommand(OnEditCommand)
     }
-
+    
+    //Internal properties
+    var Model: MovieItemViewModel?
+    //commands
+    var EditCommand: AsyncCommand!
+    
     override func Initialize(_ parameters: INavigationParameters)
     {
         LogMethodStart(#function)
@@ -41,7 +40,7 @@ class MovieDetailPageViewModel: AppPageViewModel
             let updateCellEvent = GetEvent({ MovieCellItemUpdatedEvent() })
             updateCellEvent.Publish(self.Model)
 
-            ItemUpdated = UUID()
+            self.InvalidateView()
         }
     }
 
@@ -49,7 +48,7 @@ class MovieDetailPageViewModel: AppPageViewModel
     {
         LogMethodStart(#function, arg)
         await Navigate(NameOf(AddEditMoviePageViewModel.self), NavigationParameters()
-            .With(MoviesPageViewModel.SELECTED_ITEM, Model))
+            .With(AddEditMoviePageViewModel.SELECTED_ITEM, Model))
     }
 
 

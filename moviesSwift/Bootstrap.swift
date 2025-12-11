@@ -1,5 +1,7 @@
 import Resolver
 
+
+
 class Bootstrap
 {
     func RegisterTypes(_ navService: IPageNavigationService, _ errorTrackingService: IErrorTrackingService)
@@ -48,12 +50,10 @@ class Bootstrap
     }
 }
 
-
 extension Resolver
 {
     static func RegisterAppImpl(_ navService: IPageNavigationService, _ errorTrackingService: IErrorTrackingService)
-    {
-                
+    {    
         register { ConstantImpl() as IConstant }.scope(.application)
         register { navService as IPageNavigationService }.scope(.application)
         register { errorTrackingService as IErrorTrackingService }.scope(.application)

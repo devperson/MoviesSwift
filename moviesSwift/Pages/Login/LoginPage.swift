@@ -1,15 +1,9 @@
-//
-//  LoginPage.swift
-//  iosApp
-//
-//  Created by xusan on 24/11/25.
-//
 import SwiftUI
 
 
 struct LoginPage: View {
     
-    @Environment(\.pageViewModel) var emviromentViewModel
+    @EnvironmentObject var emviromentViewModel: PageViewModel
     private var Vm: LoginPageViewModel
     {
         get

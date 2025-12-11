@@ -2,24 +2,16 @@ import Foundation
 import Resolver
 import Observation
 
-@Observable
 class AddEditMoviePageViewModel: AppPageViewModel
 {
-    static let NEW_ITEM: String = "newItem"
-    static let UPDATE_ITEM: String = "updateItem"
-    static let REMOVE_ITEM: String = "removeItem"
-    static let PhotoChangedEvent: String = "PhotoChanged"
-    static let SELECTED_ITEM: String = "selectedItem"
-
-    @ObservationIgnored @LazyInjected var movieService: IMovieService
-    @ObservationIgnored @LazyInjected var mediaPickerService: IMediaPickerService
-
-    var SaveCommand: AsyncCommand!
-    var ChangePhotoCommand: AsyncCommand!
-    var DeleteCommand: AsyncCommand!
-    var Model: MovieItemViewModel!
-    var IsEdit: Bool = false
-    var PhotoChanged: UUID = UUID()
+    public static let NEW_ITEM: String = "newItem"
+    public static let UPDATE_ITEM: String = "updateItem"
+    public static let REMOVE_ITEM: String = "removeItem"
+    public static let PhotoChangedEvent: String = "PhotoChanged"
+    public static let SELECTED_ITEM: String = "selectedItem"
+    //lazy fields
+    @LazyInjected private var movieService: IMovieService
+    @LazyInjected private var mediaPickerService: IMediaPickerService
 
     override init(_ injectedService: PageInjectedServices)
     {
@@ -29,6 +21,14 @@ class AddEditMoviePageViewModel: AppPageViewModel
         self.ChangePhotoCommand = AsyncCommand(OnChangePhotoCommand)
         self.DeleteCommand = AsyncCommand(OnDeleteCommand)
     }
+   
+    //internal properties
+    var Model: MovieItemViewModel!
+    var IsEdit: Bool = false
+    //commands
+    var SaveCommand: AsyncCommand!
+    var ChangePhotoCommand: AsyncCommand!
+    var DeleteCommand: AsyncCommand!
 
     override func Initialize(_ parameters: INavigationParameters)
     {
@@ -85,7 +85,7 @@ class AddEditMoviePageViewModel: AppPageViewModel
                 self.Model.PosterUrl = nil
             }
 
-            PhotoChanged = UUID()//this will notify the UI that the photo has changed
+            self.InvalidateView()
         }
         catch
         {

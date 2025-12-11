@@ -1,16 +1,4 @@
-struct RestException: IExceptionWithInner
+class RestException: AppException
 {
-    let Message: String
-    var Cause: (any Error)?
-
-    init(message: String)
-    {
-        self.Message = message
-    }
-
-    init(message: String, cause: any Error)
-    {
-        self.Message = message
-        self.Cause = cause
-    }
+   
 }

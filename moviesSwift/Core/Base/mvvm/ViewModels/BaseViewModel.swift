@@ -1,6 +1,6 @@
 import Foundation
 
-class BaseViewModel: LoggableService, IDestructible, IInitialize
+class BaseViewModel: BindableBase, IDestructible, IInitialize
 {
     var Initialized = BaseEvent()
     var OnDestroyed = BaseEvent()

@@ -1,11 +1,3 @@
-//
-//  VersionInfo.swift
-//  moviesSwift
-//
-//  Created by xasan on 03/12/25.
-//
-
-
 import Foundation
 
 public struct VersionInfo: Comparable, Equatable

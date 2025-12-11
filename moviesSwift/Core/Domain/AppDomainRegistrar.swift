@@ -18,6 +18,7 @@ extension Resolver
         register { RepoMovieMapper() as any IRepoMapper<Movie, MovieTb> }.scope(.application)
         register { MovieRepository() as any IRepository<Movie> }.scope(.application)
         register { MovieRestService() as IMovieRestService }.scope(.application)
+        register { MoviesService() as IMovieService }.scope(.application)
         register { DomainInfrastructureService() as IInfrastructureServices }.scope(.application)
     }
 }

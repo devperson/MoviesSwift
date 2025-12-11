@@ -7,5 +7,6 @@ class InjectedService
     @LazyInjected var EventAggregator: IMessagesCenter
     @LazyInjected var LoggingService: ILoggingService
     @LazyInjected var SnackBarService: ISnackbarService
+    @LazyInjected var BusyIndicatorService: IBusyIndicatorService
     // @LazyInjected var shareService: IShare
 }

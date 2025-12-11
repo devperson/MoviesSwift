@@ -1,6 +1,11 @@
 import Foundation
 
-struct AuthExpiredException: IException
+class AuthExpiredException: AppException
 {
-    let Message: String = "user access token is expired"
+    //override let Message: String = "user access token is expired"
+    override init()
+    {
+        super.init()
+        Message = "user access token is expired"
+    }
 }

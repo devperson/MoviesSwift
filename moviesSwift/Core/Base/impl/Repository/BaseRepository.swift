@@ -182,14 +182,9 @@ class BaseRepository<TEntity: IEntity, Tb>: LoggableService, IRepository where T
     }
 }
 
-struct RepositoryException: IException
+class RepositoryException: AppException
 {
-    let Message: String
     
-    init(_ message: String)
-    {
-        self.Message = message
-    }
 }
 
 

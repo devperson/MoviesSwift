@@ -44,7 +44,7 @@ class BusyIndicatorManager: ObservableObject, IBusyIndicatorService
     @Published var text: String? = "On it.."
     @Published var isShowing: Bool = false
     
-    func show(_ msg: String?)
+    func Show(_ msg: String?)
     {
         if let msg = msg
         {
@@ -62,7 +62,7 @@ class BusyIndicatorManager: ObservableObject, IBusyIndicatorService
         }
     }
     
-    func close()
+    func Close()
     {
         withAnimation {
             isShowing = false

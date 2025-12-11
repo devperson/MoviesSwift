@@ -3,7 +3,7 @@ import SwiftUI
 
 struct AddEditMoviePage: View
 {
-    @Environment(\.pageViewModel) var emviromentViewModel
+    @EnvironmentObject var emviromentViewModel: PageViewModel
     var Vm: AddEditMoviePageViewModel { self.emviromentViewModel as! AddEditMoviePageViewModel }
     
     @State private var model: MovieItemViewModel? = nil

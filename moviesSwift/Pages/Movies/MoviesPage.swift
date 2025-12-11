@@ -2,8 +2,8 @@ import SwiftUI
 
 
 struct MoviesPage: View
-{
-    @Environment(\.pageViewModel) var emviromentViewModel
+{    
+    @EnvironmentObject var emviromentViewModel: PageViewModel
     var Vm: MoviesPageViewModel { emviromentViewModel as! MoviesPageViewModel }
 
     /// Used so `.onReceive` can filter events for THIS page only.
@@ -109,31 +109,6 @@ struct MoviesPage: View
             }
         }
     }
-    
-    
-//    func onCollectionSet()
-//    {
-//        if let collection = moviesCollection
-//        {
-//            collection.CollectionChanged.RemoveListener(listener_: MoviesItems_CollectionChanged)
-//        }
-//        
-//        moviesCollection = Vm.MovieItems
-//        moviesCollection?.CollectionChanged.AddListener(listener_: MoviesItems_CollectionChanged)
-//    }
-//    
-//    private func MoviesItems_CollectionChanged(e: ObservableCollectionChange?)
-//    {        
-//        //Movies items changed so force to re-render whole view
-//        vmObs.objectWillChange.send()
-//    }
 }
 
-//extension ObservableCollection where T == MovieItemViewModel
-//{
-//    //converts [Any] to [MovieItemViewModel]
-//    var typedItems: [MovieItemViewModel]
-//    {
-//        return self.Items as? [MovieItemViewModel] ?? []
-//    }
-//}
+

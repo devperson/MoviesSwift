@@ -81,13 +81,9 @@ class DbInitializer: LoggableService, ILocalDbInitilizer
     }
 }
 
-struct DbError: IException
+class DbError: AppException
 {
-    let Message: String
-    init(_ message: String)
-    {
-        self.Message = message
-    }
+    
 }
 
 //enum DbError: Error

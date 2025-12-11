@@ -1,6 +1,6 @@
 protocol IBusyIndicatorService
 {
-    func show(_ msg: String?)
-    func close()
+    func Show(_ msg: String?)
+    func Close()
 }
 

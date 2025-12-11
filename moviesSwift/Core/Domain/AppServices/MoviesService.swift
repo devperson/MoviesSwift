@@ -10,7 +10,7 @@ class MoviesService : LoggableService, IMovieService
     @LazyInjected
     var movieRestService: IMovieRestService
 
-    func GetListAsync(count: Int, skip: Int, remoteList: Bool) async -> Some<[MovieDto]>
+    func GetListAsync(_ count: Int,_ skip: Int,_ remoteList: Bool) async -> Some<[MovieDto]>
     {
         do
         {

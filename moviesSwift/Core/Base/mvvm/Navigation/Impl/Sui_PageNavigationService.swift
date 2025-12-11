@@ -54,13 +54,14 @@ final class Sui_PageNavigationService: NSObject, ObservableObject, IPageNavigati
 
     @MainActor
     func Navigate(
-        name url: String,
+        _ name : String,
         parameters: INavigationParameters?,
         useModalNavigation: Bool,
         animated: Bool,
         wrapIntoNav: Bool
     ) async throws
     {
+        let url = name
         let params = parameters ?? NavigationParameters()
         let nav = UrlNavigationHelper.Parse(url)
 
@@ -324,10 +325,7 @@ final class Sui_PageNavigationService: NSObject, ObservableObject, IPageNavigati
         let info = NavRegistrar.GetPageInfo(vmName: item.VmName)
         let pageItem = Stack.first{ $0.VmName == item.VmName } //ViewModelObservable(vm: item.Vm)
         let vM = pageItem!.Vm
-        let page = info.createPage()
-            .environment(\.pageViewModel, vM)
-        //***********USAGE*********
-        //@Environment(\.pageViewModel) var vm
+        let page = info.createPage().environmentObject(vM)
         
         return AnyView(page)
     }
@@ -335,17 +333,17 @@ final class Sui_PageNavigationService: NSObject, ObservableObject, IPageNavigati
     static let shared = Sui_PageNavigationService()
 }
 
-import SwiftUI
+//import SwiftUI
 
-private struct PageViewModelKey: EnvironmentKey {
-    typealias Value = PageViewModel
-    
-    static let defaultValue = PageViewModel(PageInjectedServices())   // or fatalError if required
-}
-
-extension EnvironmentValues {
-    var pageViewModel: PageViewModel {
-        get { self[PageViewModelKey.self] }
-        set { self[PageViewModelKey.self] = newValue }
-    }
-}
+//private struct PageViewModelKey: EnvironmentKey {
+//    typealias Value = PageViewModel
+//    
+//    static let defaultValue = PageViewModel(PageInjectedServices())   // or fatalError if required
+//}
+//
+//extension EnvironmentValues {
+//    var pageViewModel: PageViewModel {
+//        get { self[PageViewModelKey.self] }
+//        set { self[PageViewModelKey.self] = newValue }
+//    }
+//}

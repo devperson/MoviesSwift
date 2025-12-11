@@ -3,7 +3,7 @@ import SwiftUI
 
 struct MovieDetailPage: View
 {
-    @Environment(\.pageViewModel) var emviromentViewModel
+    @EnvironmentObject var emviromentViewModel: PageViewModel
     var Vm: MovieDetailPageViewModel { emviromentViewModel as! MovieDetailPageViewModel }
     
     @State private var model: MovieItemViewModel? = nil

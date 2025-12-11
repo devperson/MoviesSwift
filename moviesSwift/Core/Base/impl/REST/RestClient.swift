@@ -29,7 +29,7 @@ internal final class RestClient: LoggableService, IRestClient
 
         guard let url = URL(string: httpRequest.Url) else
         {
-            let error = RestException(message: "\(TAG)Invalid URL: \(httpRequest.Url)")
+            let error = RestException("\(TAG)Invalid URL: \(httpRequest.Url)")
             loggingService.LogError(error, "\(TAG)Invalid URL: \(httpRequest.Url)")
             throw error
         }
@@ -77,7 +77,7 @@ internal final class RestClient: LoggableService, IRestClient
 
         guard let httpResponse = response as? HTTPURLResponse else
         {
-            let error = RestException(message: "Invalid HTTP response")
+            let error = RestException("Invalid HTTP response")
             loggingService.LogError(error, "\(TAG)No HTTPURLResponse")
             throw error
         }

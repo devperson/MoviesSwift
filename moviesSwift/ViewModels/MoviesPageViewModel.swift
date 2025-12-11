@@ -2,26 +2,20 @@ import Foundation
 import Resolver
 import Observation
 
-@Observable
 class MoviesPageViewModel: AppPageViewModel
 {
-    let TAG: String = "MoviesPageViewModel:"
-    static let SELECTED_ITEM = "SELECTED_ITEM"
-
-    @ObservationIgnored @LazyInjected var appLogExporter: IAppLogExporter
-    @ObservationIgnored @LazyInjected var movieService: IMovieService
-    @ObservationIgnored @LazyInjected var infrastructureServices: IInfrastructureServices
-
-    var movieCellUpdatedEvent: MovieCellItemUpdatedEvent!
-    var authErrorEvent: AuthErrorEvent!
-
-    var MenuTappedCommand: AsyncCommand!
-    var AddCommand: AsyncCommand!
-    var ItemTappedCommand: AsyncCommand!
-    var MovieItems: [MovieItemViewModel] = []
-
-    let semaphoreAsync = AsyncSemaphore(value: 1)
-    var loggingOut: Bool = false
+    //constants
+    public static let SELECTED_ITEM = "SELECTED_ITEM"
+    //private fields
+    private let TAG: String = "MoviesPageViewModel:"
+    private var movieCellUpdatedEvent: MovieCellItemUpdatedEvent!
+    private var authErrorEvent: AuthErrorEvent!
+    private let semaphoreAsync = AsyncSemaphore(value: 1)
+    private var loggingOut: Bool = false
+    @LazyInjected private var appLogExporter: IAppLogExporter
+    @LazyInjected private var movieService: IMovieService
+    @LazyInjected private var infrastructureServices: IInfrastructureServices
+    @LazyInjected private var deviceThreads: IDeviceThreadService
 
     override init(_ injectedService: PageInjectedServices)
     {
@@ -36,6 +30,13 @@ class MoviesPageViewModel: AppPageViewModel
         movieCellUpdatedEvent.Subscribe(InstanceId, OnMovieCellItemUpdatedEvent)
         authErrorEvent.Subscribe(InstanceId, HandleAuthErrorEvent)
     }
+    //Bindable
+    @Published var MovieItems: [MovieItemViewModel] = []
+    //Commands
+    var MenuTappedCommand: AsyncCommand!
+    var AddCommand: AsyncCommand!
+    var ItemTappedCommand: AsyncCommand!
+    
 
     override func Initialize(_ parameters: INavigationParameters)
     {
@@ -66,7 +67,15 @@ class MoviesPageViewModel: AppPageViewModel
         else if parameters.ContainsKey(AddEditMoviePageViewModel.REMOVE_ITEM)
         {
             let removedItem: MovieItemViewModel = GetParameter(parameters, key: AddEditMoviePageViewModel.REMOVE_ITEM)!
-            MovieItems.removeAll(where: { $0.Id == removedItem.Id })
+            Task
+            {
+                try! await Task.Delay(milSeconds: 400) //delay so use can see the remove animation
+                await deviceThreads.RunOnMainThreadWithAnimationAsync 
+                {
+                    self.MovieItems.removeAll(where: { $0.Id == removedItem.Id })
+                }
+            }
+            
         }
     }
 

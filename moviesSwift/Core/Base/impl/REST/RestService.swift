@@ -120,7 +120,7 @@ open class RestService: LoggableService
                 {
                     // If body serialization fails, you may want to log it and rethrow as ServerApiException/RestException
                     self.loggingService.LogError(error, "\(self.tag)Failed to serialize request body")
-                    throw RestException(message: "Failed to serialize request body", cause: error)
+                    throw RestException("Failed to serialize request body", cause: error)
                 }
             }
 
@@ -168,7 +168,7 @@ open class RestService: LoggableService
         guard let data = jsonStr.data(using: .utf8)
         else
         {
-            throw RestException(message: "Failed to convert JSON string to Data, jsonStr: \(jsonStr)")
+            throw RestException("Failed to convert JSON string to Data, jsonStr: \(jsonStr)")
         }
 
         do
@@ -178,7 +178,7 @@ open class RestService: LoggableService
         catch
         {
             // you may choose to wrap into ServerApiException/RestException
-            throw RestException(message: "Failed to deserialize JSON response, internal error: \(error.localizedDescription)", cause: error)
+            throw RestException("Failed to deserialize JSON response, internal error: \(error.localizedDescription)", cause: error)
         }
     }
 
@@ -230,19 +230,19 @@ open class RestService: LoggableService
             switch urlError.code
             {
                 case .timedOut:
-                    throw HttpConnectionException(message: "Request timed out", cause: urlError)
+                throw HttpConnectionException("Request timed out", cause: urlError)
                 case .cannotFindHost, .cannotConnectToHost, .dnsLookupFailed:
-                    throw HttpConnectionException(message: "Cannot resolve host", cause: urlError)
+                throw HttpConnectionException("Cannot resolve host", cause: urlError)
                 case .notConnectedToInternet, .networkConnectionLost:
-                    throw HttpConnectionException(message: "Network error: \(urlError.localizedDescription)", cause: urlError)
+                throw HttpConnectionException("Network error: \(urlError.localizedDescription)", cause: urlError)
                 default:
-                    throw HttpConnectionException(message: "Network error: \(urlError.localizedDescription)", cause: urlError)
+                throw HttpConnectionException("Network error: \(urlError.localizedDescription)", cause: urlError)
             }
         }
         catch
         {
             // Unknown / unexpected error – wrap as connection-level by default
-            throw HttpConnectionException(message: "Unexpected error: \(error.localizedDescription)", cause: error)
+            throw HttpConnectionException("Unexpected error: \(error.localizedDescription)", cause: error)
         }
     }
 
