@@ -7,7 +7,7 @@ class RepoDi: XCTestCase
 {
     override func setUpWithError() throws
     {
-        Resolver.RegisterTypes()
+        Resolver.RegisterRepoTypes()
         
         let dbInitilizer: ILocalDbInitilizer = ContainerLocator.Resolve()
         try! dbInitilizer.InitDb()
@@ -21,7 +21,7 @@ class RepoDi: XCTestCase
 
 extension Resolver
 {
-    static func RegisterTypes()
+    static func RegisterRepoTypes()
     {
         register { MockLogger() as ILoggingService }.scope(.application)
         register { iOSDirectoryService() as IDirectoryService }.scope(.application)

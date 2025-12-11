@@ -2,8 +2,7 @@ import XCTest
 @testable import moviesSwift
 
 final class MovieRepoTest: RepoDi
-{
-    // Equivalent to Kotlin companion object
+{    
     static var newId: Int = 1
 
     // MARK: - T1_1 Add Movie Test
