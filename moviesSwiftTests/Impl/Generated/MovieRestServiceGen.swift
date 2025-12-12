@@ -3,7 +3,7 @@ import Mockable
 
 //Mock IMovieRestService that will be generated like MockIGenMovieRestService
 @Mockable
-protocol MovieRestService : IMovieRestService
+protocol MovieRestServiceGen : IMovieRestService
 {
     func GetMovieRestlist() async throws -> [Movie]
 }

@@ -20,7 +20,7 @@ extension Resolver
 {
     static func RegisterRESTTypes()
     {
-        register { MockLogger() as ILoggingService }.scope(.application)
+        register { CustomAppLogging() as ILoggingService }.scope(.application)
         register { iOSDirectoryService() as IDirectoryService }.scope(.application)
         register { iOSPreferencesImplementation() as IPreferences }.scope(.application)        
         register { AuthTokenService() as IAuthTokenService }.scope(.application)

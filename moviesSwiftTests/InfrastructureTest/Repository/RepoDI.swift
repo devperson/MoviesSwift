@@ -23,7 +23,7 @@ extension Resolver
 {
     static func RegisterRepoTypes()
     {
-        register { MockLogger() as ILoggingService }.scope(.application)
+        register { CustomAppLogging() as ILoggingService }.scope(.application)
         register { iOSDirectoryService() as IDirectoryService }.scope(.application)
         register { DbInitializer() as ILocalDbInitilizer }.scope(.application)
         register { RepoMovieMapper() as any IRepoMapper<Movie, MovieTb> }.scope(.application)

@@ -3,7 +3,7 @@
 import Foundation
 
 
-class MockMovieRepository : IRepository
+class CustomMovieRepository : IRepository
 {
     typealias TEntity = Movie
     

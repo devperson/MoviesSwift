@@ -2,7 +2,7 @@
 
 import Foundation
 
-class MockLogger: ILoggingService
+class CustomAppLogging: ILoggingService
 {
     // MARK: - Static Tags
     static let EnterTag: String = "➡Enter"

@@ -47,6 +47,9 @@
                <Test
                   Identifier = "RepoDi">
                </Test>
+               <Test
+                  Identifier = "VmDI">
+               </Test>
             </SkippedTests>
          </TestableReference>
          <TestableReference

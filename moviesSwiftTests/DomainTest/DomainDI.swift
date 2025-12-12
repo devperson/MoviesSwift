@@ -21,14 +21,14 @@ extension Resolver
 {
     static func RegisterDomainTypes()
     {
-        register { MockLogger() as ILoggingService }.scope(.application)
-        register { MockMovieRepository() as any IRepository<Movie> }.scope(.application)
+        register { CustomAppLogging() as ILoggingService }.scope(.application)
+        register { CustomMovieRepository() as any IRepository<Movie> }.scope(.application)
         register { MoviesService() as IMovieService }.scope(.application)
         
         //register mock IMovieRestService
         let movie = Movie.Create("test rest1", "overview rest1", "");
         movie.Id = 1;
-        let mockrestService = MockMovieRestService()
+        let mockrestService = MockMovieRestServiceGen()
         //mock the GetMovieRestlist()
         given(mockrestService).GetMovieRestlist().willReturn([movie])
         //register
