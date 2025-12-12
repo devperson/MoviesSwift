@@ -30,7 +30,9 @@ class AsyncCommand
         {
             if !doubleClickChecker.isOneClick()
             {
-                AsyncCommand.loggingService?.LogWarning("AsyncCommand.ExecuteAsync() is ignored because it is not permitted to execute second click within ${ClickUtil.OneClickDelay}mls")
+                let warning = "AsyncCommand.ExecuteAsync() is ignored because it is not permitted to execute second click within ${ClickUtil.OneClickDelay}mls"
+                AsyncCommand.loggingService?.LogWarning(warning)
+                print(warning)
                 return
             }
         }

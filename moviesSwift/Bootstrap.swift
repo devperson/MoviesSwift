@@ -17,10 +17,7 @@ class Bootstrap
         NavRegistrar.RegisterPageForNavigation({ LoginPage() }, { LoginPageViewModel(pageService) })
         NavRegistrar.RegisterPageForNavigation({ MoviesPage() }, { MoviesPageViewModel(pageService) })
         NavRegistrar.RegisterPageForNavigation({ MovieDetailPage() }, { MovieDetailPageViewModel(pageService) })
-        NavRegistrar.RegisterPageForNavigation({ AddEditMoviePage() }, { AddEditMoviePageViewModel(pageService) })
-        
-//        let logging: ILoggingService = ContainerLocator.Resolve()
-//        let busyIndic: IBusyIndicatorService = ContainerLocator.Resolve()
+        NavRegistrar.RegisterPageForNavigation({ AddEditMoviePage() }, { AddEditMoviePageViewModel(pageService) })        
     }
     
     func NavigateToPage(_ navigationService: IPageNavigationService)

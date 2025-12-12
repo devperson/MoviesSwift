@@ -3,7 +3,7 @@ import XCTest
 
 @testable import moviesSwift
 
-final class MovieViewModelTest: VmDI
+final class VMMoviesPageViewModelTest: VmDI
 {
     
     //private val mainVm by inject<MoviesPageViewModel>()

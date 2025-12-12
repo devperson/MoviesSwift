@@ -94,8 +94,8 @@ class AddEditMoviePageViewModel: AppPageViewModel
     }
 
     func OnSaveCommand(_ arg: Any?) async
-    {
-        LogMethodStart("OnSaveCommand")
+    {        
+        LogMethodStart(#function, arg)
 
         if (self.Model?.Name.isEmpty ?? true)
         {
