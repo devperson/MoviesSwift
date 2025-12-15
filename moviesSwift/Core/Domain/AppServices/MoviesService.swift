@@ -30,7 +30,7 @@ class MoviesService : LoggableService, IMovieService
 
             if (canLoadLocal)
             {
-                loggingService.Log("MoviesService.GetListAsync(): loading from Local storage because canLoadLocal: $canLoadLocal")
+                loggingService.Log("MoviesService.GetListAsync(): loading from Local storage because canLoadLocal: \(canLoadLocal)")
                 let dtoList = try localList!.map
                 {s in
                     

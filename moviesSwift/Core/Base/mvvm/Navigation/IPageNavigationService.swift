@@ -16,10 +16,12 @@ protocol IPageNavigationService
     }
 }
 
-//extension IPageNavigationService
-//{
-//    func Navigate( _ name: String, parameters: INavigationParameters? = NavigationParameters(), useModalNavigation: Bool = false, animated: Bool = true, wrapIntoNav: Bool = false) async throws
-//    {
-//        try await self.Navigate(name, parameters: parameters, useModalNavigation: useModalNavigation, animated: animated, wrapIntoNav: wrapIntoNav)
-//    }
-//}
+
+
+extension IPageNavigationService
+{
+    func Navigate( _ name: String) async throws
+    {
+        try await Navigate(name, parameters: NavigationParameters(), useModalNavigation: false, animated: true, wrapIntoNav: false)
+    }
+}

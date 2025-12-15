@@ -1,5 +1,4 @@
 //  Platform-specific implementation of IMediaPickerService for iOS.
-//  This bridges Kotlin Multiplatform shared code with iOS UIKit APIs,
 //  allowing the user to pick an image from gallery or take a photo using the camera.
 //
 
@@ -26,6 +25,8 @@ class Sui_MediaPickerService: NSObject, IMediaPickerService
     /// Shared logger resolved from Koin (shared dependency container)
     @LazyInjected
     private var logger: ILoggingService
+    @LazyInjected
+    private var deviceThread: IDeviceThreadService
 
     /// Internal log tag prefix for consistency
     private let TAG = "IosMediaPickerService: "
@@ -114,56 +115,65 @@ class Sui_MediaPickerService: NSObject, IMediaPickerService
     /// Presents PHPickerViewController for selecting an image from the photo library.
     private func presentGalleryPicker(options: MediaOptions)
     {
-        guard let vc = ensurePresentingController() else
+        //make sure we run on main thread
+        deviceThread.RunOnMainThread
         {
-            logger.LogWarning("\(TAG)presentGalleryPicker(): ensurePresentingController() returned null - this means it failed to get root ViewController.")
-            continuation?.resume(throwing: NSError(domain: "NoActiveController for presentGalleryPicker()", code: -2))
-            continuation = nil
-            return
+            guard let vc = self.ensurePresentingController() else
+            {
+                self.logger.LogWarning("\(self.TAG)presentGalleryPicker(): ensurePresentingController() returned null - this means it failed to get root ViewController.")
+                self.continuation?.resume(throwing: NSError(domain: "NoActiveController for presentGalleryPicker()", code: -2))
+                self.continuation = nil
+                return
+            }
+            
+            var config = PHPickerConfiguration(photoLibrary: .shared())
+            config.selectionLimit = 1
+            config.filter = .images
+            
+            let picker = PHPickerViewController(configuration: config)
+            picker.delegate = self
+            vc.present(picker, animated: true)
         }
         
-        var config = PHPickerConfiguration(photoLibrary: .shared())
-        config.selectionLimit = 1
-        config.filter = .images
-        
-        let picker = PHPickerViewController(configuration: config)
-        picker.delegate = self
-        vc.present(picker, animated: true)
     }
 
     /// Presents UIImagePickerController for capturing a photo using the camera.
     private func presentCameraPicker(options: MediaOptions)
     {
-        guard let vc = ensurePresentingController() else
+        //make sure we run on main thread
+        deviceThread.RunOnMainThread
         {
-            logger.LogWarning("\(TAG)presentCameraPicker(): ensurePresentingController() returned null - this means it failed to get root ViewController.")
-            continuation?.resume(throwing: NSError(domain: "NoActiveController for presentCameraPicker()", code: -2))
-            continuation = nil
-            return
+            guard let vc = self.ensurePresentingController() else
+            {
+                self.logger.LogWarning("\(self.TAG)presentCameraPicker(): ensurePresentingController() returned null - this means it failed to get root ViewController.")
+                self.continuation?.resume(throwing: NSError(domain: "NoActiveController for presentCameraPicker()", code: -2))
+                self.continuation = nil
+                return
+            }
+            
+            guard UIImagePickerController.isSourceTypeAvailable(.camera) else
+            {
+                self.logger.LogWarning("\(self.TAG)Camera not available on this device.")
+                self.continuation?.resume(throwing: NSError(domain: "CameraNotAvailable", code: -1))
+                self.continuation = nil
+                return
+            }
+            
+            let picker = UIImagePickerController()
+            picker.sourceType = .camera
+            picker.delegate = self
+            // Use UTType.image (new API, iOS 14+)
+            if #available(iOS 14.0, *)
+            {
+                picker.mediaTypes = [UTType.image.identifier]
+            }
+            else
+            {
+                // Fallback for older OS (rare, iOS 13 and below)
+                picker.mediaTypes = [kUTTypeImage as String]
+            }
+            vc.present(picker, animated: true)
         }
-        
-        guard UIImagePickerController.isSourceTypeAvailable(.camera) else
-        {
-            logger.LogWarning("\(TAG)Camera not available on this device.")
-            continuation?.resume(throwing: NSError(domain: "CameraNotAvailable", code: -1))
-            continuation = nil
-            return
-        }
-        
-        let picker = UIImagePickerController()
-        picker.sourceType = .camera
-        picker.delegate = self
-        // Use UTType.image (new API, iOS 14+)
-        if #available(iOS 14.0, *)
-        {
-            picker.mediaTypes = [UTType.image.identifier]
-        }
-        else
-        {
-            // Fallback for older OS (rare, iOS 13 and below)
-            picker.mediaTypes = [kUTTypeImage as String]
-        }
-        vc.present(picker, animated: true)
     }
 
     /// Applies resize and compression based on MediaOptions.

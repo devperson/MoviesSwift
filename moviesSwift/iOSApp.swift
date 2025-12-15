@@ -5,7 +5,8 @@ import Resolver
 {
     init()
     {
-        if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] == nil
+        let isUnitTest = ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
+        if !isUnitTest
         {
             // Normal app launch → register real DI here
             let appErrorTracking = iOSErrorTrackingService()

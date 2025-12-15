@@ -10,14 +10,17 @@ class Bootstrap
         AppDomainRegistrar.RegisterTypes()
         Resolver.RegisterAppImpl(navService, errorTrackingService)
         
-        
+       
         //Register pages, viewmodels mapping
-        
-        let pageService: PageInjectedServices = ContainerLocator.Resolve()
-        NavRegistrar.RegisterPageForNavigation({ LoginPage() }, { LoginPageViewModel(pageService) })
-        NavRegistrar.RegisterPageForNavigation({ MoviesPage() }, { MoviesPageViewModel(pageService) })
-        NavRegistrar.RegisterPageForNavigation({ MovieDetailPage() }, { MovieDetailPageViewModel(pageService) })
-        NavRegistrar.RegisterPageForNavigation({ AddEditMoviePage() }, { AddEditMoviePageViewModel(pageService) })        
+        NavRegistrar.RegisterPageForNavigation({ LoginPage() }, { LoginPageViewModel(self.Resolve()) })
+        NavRegistrar.RegisterPageForNavigation({ MoviesPage() }, { MoviesPageViewModel(self.Resolve()) })
+        NavRegistrar.RegisterPageForNavigation({ MovieDetailPage() }, { MovieDetailPageViewModel(self.Resolve()) })
+        NavRegistrar.RegisterPageForNavigation({ AddEditMoviePage() }, { AddEditMoviePageViewModel(self.Resolve()) })
+    }
+    
+    func Resolve<T>() -> T
+    {
+        return ContainerLocator.Resolve()
     }
     
     func NavigateToPage(_ navigationService: IPageNavigationService)
