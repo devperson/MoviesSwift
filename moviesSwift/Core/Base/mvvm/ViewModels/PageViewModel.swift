@@ -63,7 +63,7 @@ class PageViewModel: NavigatingBaseViewModel, IPageLifecycleAware
         LogVirtualBaseMethod(#function)
     }
 
-    fileprivate func OnFirstTimeAppears()
+    func OnFirstTimeAppears()
     {
         LogVirtualBaseMethod(#function)
     }

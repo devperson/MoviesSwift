@@ -43,7 +43,7 @@ class AppLogExporter: LoggableService, IAppLogExporter
             loggingService.TrackError(error, data: nil)
             return LogSharingResult(Success: false, Exception: error)
         }
-
+        
         shareFileService.RequestShareFile(title: "Sharing compressed logs", fullPath: fileUrl.path)
 
         return LogSharingResult(Success: true, Exception: nil)

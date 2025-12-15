@@ -40,6 +40,7 @@ final class Sui_PageNavigationService: NSObject, ObservableObject, IPageNavigati
         let vm = info.createVm()
         vm.Initialize(params)
         vm.OnNavigatedTo(params)
+        vm.OnAppearing()
         vm.OnAppeared()
         
         let newRoot = PageItem(vmName, vm)
@@ -109,7 +110,7 @@ final class Sui_PageNavigationService: NSObject, ObservableObject, IPageNavigati
 
         Stack.append(newItem)
         try await Task.sleep(for: .seconds(0.3))
-        
+        vm.OnAppearing()
         vm.OnAppeared()
     }
 
@@ -258,7 +259,8 @@ final class Sui_PageNavigationService: NSObject, ObservableObject, IPageNavigati
             newRoot = PageItem(vmName, vm)
             vm.Initialize(params)
             vm.OnNavigatedTo(params)
-            vm.OnAppeared()
+            vm.OnAppearing()
+            vm.OnAppeared()            
         }
         
         // Keep only the new page,

@@ -2,26 +2,33 @@
 import UIKit
 import Foundation
 import LinkPresentation
+import Resolver
 
 class iOSShareImplementation: IShare
 {
+    @LazyInjected var deviceThread: IDeviceThreadService
     func RequestShareFile(title: String, fullPath: String)
     {
         let fileUrl = URL(fileURLWithPath: fullPath)
         let shareItem = GetShareItem(fileUrl as NSObject, title: title)
         
         let activityController = UIActivityViewController(activityItems: [shareItem], applicationActivities: nil)
-                
-        if let vc = CurrentController.GetTopViewController()
+           
+        deviceThread.RunOnMainThread
         {
-            if let popover = activityController.popoverPresentationController
+            if let vc = CurrentController.GetTopViewController()
             {
-                popover.sourceView = vc.view
-                popover.sourceRect = vc.view?.bounds ?? .zero
+                
+                if let popover = activityController.popoverPresentationController
+                {
+                    popover.sourceView = vc.view
+                    popover.sourceRect = vc.view?.bounds ?? .zero
+                }
+                
+                vc.present(activityController, animated: true)
             }
-            
-            vc.present(activityController, animated: true)
         }
+        
     }
     
     func GetShareItem(_ obj: NSObject, title: String?) -> NSObject
