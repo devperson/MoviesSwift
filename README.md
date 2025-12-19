@@ -43,7 +43,10 @@ The demo shows how:
 ## Application Overview
 
 This demo mobile application targets **iOS** and **Android** using **.NET Native iOS/Android**.
-
+- **Swift** for service and business layers
+- **SwiftUI** for UI rendering
+- **NavigationStack** for navigation
+- **MVVM** architecture
 - ~**60% MVVM/Service code**
 - ~**40% native UI code per platform**
 - Clear separation between UI, ViewModels, Services, and Domain logic
