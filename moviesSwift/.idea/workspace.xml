@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="06329b14-f5ba-4ae0-8508-18eab9e130ba" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../moviesSwift.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../moviesSwift.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../moviesSwift.xcodeproj/project.xcworkspace/xcuserdata/xusan.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/../moviesSwift.xcodeproj/project.xcworkspace/xcuserdata/xusan.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Abstractions/IInfrastructureServices.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Abstractions/IInfrastructureServices.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Abstractions/Repository/ILocalDbInitilizer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Abstractions/Repository/ILocalDbInitilizer.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Base/impl/InfrastructureServices.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Base/impl/InfrastructureServices.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Base/impl/REST/RequestQueueList.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Base/impl/REST/RequestQueueList.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Domain/Mapper/RepoMovieMapper.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Domain/Mapper/RepoMovieMapper.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModels/MoviesPageViewModel.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/MoviesPageViewModel.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../moviesSwiftTests/moviesSwiftTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../moviesSwiftTests/moviesSwiftTests.swift" afterDir="false" />
-    </list>
+    <list default="true" id="06329b14-f5ba-4ae0-8508-18eab9e130ba" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
