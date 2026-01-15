@@ -25,13 +25,16 @@ The demo shows how:
 
 ### Other Implementations
 
+- **MoviesDemo (Flutter)**  
+  https://github.com/devperson/MoviesFlutter
+  
 - **MoviesDemo (KMP – Fragment / UIKit)**  
   https://github.com/xusan/MoviesKmpSimplified
 
 - **MoviesDemo (KMP – Jetpack Compose / SwiftUI)**  
   https://github.com/xusan/movieskmpcompose
   
-- **MoviesDemo (.NET – Fragment / UIKit)**  
+- **MoviesDemo (.NET,C# – Fragment / UIKit)**  
   https://github.com/devperson/MyDemoApp
   
 > All *MoviesDemo* implementations have **identical domain models, architecture, and features**.
