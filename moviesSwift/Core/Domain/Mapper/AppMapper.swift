@@ -12,7 +12,7 @@ extension IEntity
                             PosterUrl: movie.PosterUrl)
         }
 
-        throw MappingError.CannotConvertEntity(entity: "Failed to find corresponding dto model for \(type(of: self)) entity")
+        throw AppException("Failed to find corresponding dto model for \(type(of: self)) entity")
     }
 }
 
@@ -29,6 +29,6 @@ extension IAppDto
             return movie
         }
 
-        throw MappingError.CannotConvertDto(dto: "Failed to find corresponding entity model for \(type(of: self)) dto")
+        throw AppException("Failed to find corresponding entity model for \(type(of: self)) dto")
     }
 }

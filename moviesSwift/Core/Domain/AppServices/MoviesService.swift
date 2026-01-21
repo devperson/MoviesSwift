@@ -10,7 +10,7 @@ class MoviesService : LoggableService, IMovieService
     @LazyInjected
     var movieRestService: IMovieRestService
 
-    func GetListAsync(count: Int, skip: Int, remoteList: Bool) async -> Some<[MovieDto]>
+    func GetListAsync(_ count: Int,_ skip: Int,_ remoteList: Bool) async -> Some<[MovieDto]>
     {
         do
         {
@@ -30,7 +30,7 @@ class MoviesService : LoggableService, IMovieService
 
             if (canLoadLocal)
             {
-                loggingService.Log("MoviesService.GetListAsync(): loading from Local storage because canLoadLocal: $canLoadLocal")
+                loggingService.Log("MoviesService.GetListAsync(): loading from Local storage because canLoadLocal: \(canLoadLocal)")
                 let dtoList = try localList!.map
                 {s in
                     
@@ -48,12 +48,12 @@ class MoviesService : LoggableService, IMovieService
             }
             else
             {
-                loggingService.Log("MoviesService.GetListAsync(): loading from Remote server because canLoadLocal: $canLoadLocal")
+                loggingService.Log("MoviesService.GetListAsync(): loading from Remote server because canLoadLocal: \(canLoadLocal)")
                 //download all list
                 let remoteList = try await movieRestService.GetMovieRestlist();
                 let deletedCount = try await movieRepository.ClearAsync(reason: "MovieService: Delete all items requested when syncing");
                 let insertedCount = try await movieRepository.AddAllAsync(remoteList);
-                loggingService.Log("MoviesService.GetListAsync(): Sync completed deletedCount: $deletedCount, insertedCount: $insertedCount")
+                loggingService.Log("MoviesService.GetListAsync(): Sync completed deletedCount: \(deletedCount), insertedCount: \(insertedCount)")
 
                 //return dto list
                 let dtoList = try remoteList.map{s in try s.ToDto() as! MovieDto};

@@ -4,7 +4,7 @@ import Foundation
 public protocol IVersionTracking
 {
     /// Starts tracking version information.
-    func Track()
+    func Track() throws
 
     /// Gets a value indicating whether this is the first time this app has ever been launched on this device.
     var IsFirstLaunchEver: Bool

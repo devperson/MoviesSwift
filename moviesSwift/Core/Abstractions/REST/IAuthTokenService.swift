@@ -2,10 +2,10 @@ import Foundation
 
 protocol IAuthTokenService
 {
-    func GetToken() async -> String?
+    func GetToken() async throws -> String?
     func EnsureAuthValid() async throws
-    func SaveAuthTokenDetails(_ authToken: AuthTokenDetails?) async
-    func GetAuthTokenDetails() async -> AuthTokenDetails?
+    func SaveAuthTokenDetails(_ authToken: AuthTokenDetails?) async throws
+    func GetAuthTokenDetails() async throws -> AuthTokenDetails?
 }
 
 public struct AuthTokenDetails: Codable

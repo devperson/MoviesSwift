@@ -10,9 +10,15 @@
 		0DEFA6692EE7511300CFB179 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 0DEFA6682EE7511300CFB179 /* Resolver */; };
 		0DEFA66B2EE7512F00CFB179 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0DEFA66A2EE7512F00CFB179 /* RealmSwift */; };
 		0DEFA66C2EE7512F00CFB179 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 0DEFA66A2EE7512F00CFB179 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		8F1E56732EEB6AD400ED813E /* Mockable in Frameworks */ = {isa = PBXBuildFile; productRef = 8F1E56722EEB6AD400ED813E /* Mockable */; };
 		8F6ECA7F2EE09A7E00747ED1 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 8F6ECA7E2EE09A7E00747ED1 /* Resolver */; };
 		8F9618732EE316B6000434AD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8F9618722EE316B6000434AD /* RealmSwift */; };
 		8F9618742EE316E0000434AD /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 8F9618722EE316B6000434AD /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		8FE88E462EE99A5B0093CE09 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 8FE88E452EE99A5B0093CE09 /* SDWebImage */; };
+		8FE88E492EE99A960093CE09 /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 8FE88E482EE99A960093CE09 /* SwiftyBeaver */; };
+		8FE88E4C2EE99AB20093CE09 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 8FE88E4B2EE99AB20093CE09 /* ZIPFoundation */; };
+		8FE88E4F2EE99AE10093CE09 /* SVGKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8FE88E4E2EE99AE10093CE09 /* SVGKit */; };
+		8FE88E522EE99B130093CE09 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8FE88E512EE99B130093CE09 /* SDWebImageSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,8 +105,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FE88E522EE99B130093CE09 /* SDWebImageSwiftUI in Frameworks */,
+				8FE88E4F2EE99AE10093CE09 /* SVGKit in Frameworks */,
+				8FE88E462EE99A5B0093CE09 /* SDWebImage in Frameworks */,
 				8F9618732EE316B6000434AD /* RealmSwift in Frameworks */,
 				8F6ECA7F2EE09A7E00747ED1 /* Resolver in Frameworks */,
+				8FE88E492EE99A960093CE09 /* SwiftyBeaver in Frameworks */,
+				8FE88E4C2EE99AB20093CE09 /* ZIPFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +121,7 @@
 			files = (
 				0DEFA66B2EE7512F00CFB179 /* RealmSwift in Frameworks */,
 				0DEFA6692EE7511300CFB179 /* Resolver in Frameworks */,
+				8F1E56732EEB6AD400ED813E /* Mockable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +186,11 @@
 			packageProductDependencies = (
 				8F6ECA7E2EE09A7E00747ED1 /* Resolver */,
 				8F9618722EE316B6000434AD /* RealmSwift */,
+				8FE88E452EE99A5B0093CE09 /* SDWebImage */,
+				8FE88E482EE99A960093CE09 /* SwiftyBeaver */,
+				8FE88E4B2EE99AB20093CE09 /* ZIPFoundation */,
+				8FE88E4E2EE99AE10093CE09 /* SVGKit */,
+				8FE88E512EE99B130093CE09 /* SDWebImageSwiftUI */,
 			);
 			productName = moviesSwift;
 			productReference = 8F7FE6A62EE061740097A525 /* moviesSwift.app */;
@@ -200,6 +217,7 @@
 			packageProductDependencies = (
 				0DEFA6682EE7511300CFB179 /* Resolver */,
 				0DEFA66A2EE7512F00CFB179 /* RealmSwift */,
+				8F1E56722EEB6AD400ED813E /* Mockable */,
 			);
 			productName = moviesSwiftTests;
 			productReference = 8F7FE6BC2EE061760097A525 /* moviesSwiftTests.xctest */;
@@ -263,6 +281,12 @@
 			packageReferences = (
 				8F6ECA7D2EE09A7E00747ED1 /* XCRemoteSwiftPackageReference "Resolver" */,
 				8F9618712EE316B6000434AD /* XCRemoteSwiftPackageReference "realm-swift" */,
+				8FE88E442EE99A5B0093CE09 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				8FE88E472EE99A960093CE09 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
+				8FE88E4A2EE99AB20093CE09 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
+				8FE88E4D2EE99AE10093CE09 /* XCRemoteSwiftPackageReference "SVGKit" */,
+				8FE88E502EE99B130093CE09 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				8F1E56712EEB6AD400ED813E /* XCRemoteSwiftPackageReference "Mockable" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8F7FE6A72EE061740097A525 /* Products */;
@@ -352,7 +376,6 @@
 				INFOPLIST_FILE = moviesSwift/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -388,7 +411,6 @@
 				INFOPLIST_FILE = moviesSwift/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -469,6 +491,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[arch=*]" = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -541,6 +564,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.moviedemo.app.moviesSwiftTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[arch=*]" = "DEBUG $(inherited) MOCKING";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -643,6 +667,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8F1E56712EEB6AD400ED813E /* XCRemoteSwiftPackageReference "Mockable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kolos65/Mockable";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
 		8F6ECA7D2EE09A7E00747ED1 /* XCRemoteSwiftPackageReference "Resolver" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hmlongco/Resolver";
@@ -659,6 +691,46 @@
 				minimumVersion = 20.0.3;
 			};
 		};
+		8FE88E442EE99A5B0093CE09 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.21.3;
+			};
+		};
+		8FE88E472EE99A960093CE09 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyBeaver/SwiftyBeaver.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.1;
+			};
+		};
+		8FE88E4A2EE99AB20093CE09 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/weichsel/ZIPFoundation";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.20;
+			};
+		};
+		8FE88E4D2EE99AE10093CE09 /* XCRemoteSwiftPackageReference "SVGKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SVGKit/SVGKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		8FE88E502EE99B130093CE09 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -672,6 +744,11 @@
 			package = 8F9618712EE316B6000434AD /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
+		8F1E56722EEB6AD400ED813E /* Mockable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F1E56712EEB6AD400ED813E /* XCRemoteSwiftPackageReference "Mockable" */;
+			productName = Mockable;
+		};
 		8F6ECA7E2EE09A7E00747ED1 /* Resolver */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8F6ECA7D2EE09A7E00747ED1 /* XCRemoteSwiftPackageReference "Resolver" */;
@@ -681,6 +758,31 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8F9618712EE316B6000434AD /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		8FE88E452EE99A5B0093CE09 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8FE88E442EE99A5B0093CE09 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		8FE88E482EE99A960093CE09 /* SwiftyBeaver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8FE88E472EE99A960093CE09 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
+			productName = SwiftyBeaver;
+		};
+		8FE88E4B2EE99AB20093CE09 /* ZIPFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8FE88E4A2EE99AB20093CE09 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
+			productName = ZIPFoundation;
+		};
+		8FE88E4E2EE99AE10093CE09 /* SVGKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8FE88E4D2EE99AE10093CE09 /* XCRemoteSwiftPackageReference "SVGKit" */;
+			productName = SVGKit;
+		};
+		8FE88E512EE99B130093CE09 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8FE88E502EE99B130093CE09 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

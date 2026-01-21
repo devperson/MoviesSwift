@@ -32,10 +32,17 @@ class VersionTrackingImplementation: LoggableService, IVersionTracking
     override init()
     {
         super.init()
-        Track()
+        do
+        {
+            try Track()
+        }
+        catch
+        {
+            loggingService.TrackError(error)
+        }
     }
 
-    func Track()
+    func Track() throws
     {
         LogMethodStart(#function)
         if !versionTrail.isEmpty
@@ -43,13 +50,13 @@ class VersionTrackingImplementation: LoggableService, IVersionTracking
             return
         }
 
-        InitVersionTracking()
+        try InitVersionTracking()
     }
 
-    internal func InitVersionTracking()
+    internal func InitVersionTracking() throws
     {
         LogMethodStart(#function)
-        var isFirst = !(preferences.ContainsKey(versionsKey) && preferences.ContainsKey(buildsKey))
+        let isFirst = !(preferences.ContainsKey(versionsKey) && preferences.ContainsKey(buildsKey))
         IsFirstLaunchEver = isFirst
 
         if IsFirstLaunchEver
@@ -58,7 +65,9 @@ class VersionTrackingImplementation: LoggableService, IVersionTracking
         }
         else
         {
-            versionTrail = [versionsKey: ReadHistory(key: versionsKey), buildsKey: ReadHistory(key: buildsKey)]
+            let versions = try ReadHistory(key: versionsKey)
+            let builds = try ReadHistory(key: buildsKey)
+            versionTrail = [versionsKey: versions, buildsKey: builds]
         }
 
         IsFirstLaunchForCurrentVersion = !(versionTrail[versionsKey]?.contains(CurrentVersion) ?? false) || CurrentVersion != LastInstalledVersion
@@ -84,8 +93,8 @@ class VersionTrackingImplementation: LoggableService, IVersionTracking
 
         if IsFirstLaunchForCurrentVersion || IsFirstLaunchForCurrentBuild
         {
-            WriteHistory(key: versionsKey, history: versionTrail[versionsKey] ?? [])
-            WriteHistory(key: buildsKey, history: versionTrail[buildsKey] ?? [])
+            try WriteHistory(key: versionsKey, history: versionTrail[versionsKey] ?? [])
+            try WriteHistory(key: buildsKey, history: versionTrail[buildsKey] ?? [])
         }
     }
 
@@ -165,19 +174,19 @@ class VersionTrackingImplementation: LoggableService, IVersionTracking
         return sb.joined(separator: "\n")
     }
 
-    private func ReadHistory(key: String) -> [String]
+    private func ReadHistory(key: String) throws-> [String]
     {
         LogMethodStart(#function, key)
-        return preferences.Get(key, defaultValue: nil as String?)?.split(separator: "|").map(String.init).filter
+        return try preferences.Get(key, defaultValue: nil as String?)?.split(separator: "|").map(String.init).filter
         {
             !$0.isEmpty
         } ?? []
     }
 
-    private func WriteHistory(key: String, history: [String])
+    private func WriteHistory(key: String, history: [String]) throws
     {
         LogMethodStart(#function, key, history)
-        preferences.Set(key, history.joined(separator: "|"))
+        try preferences.Set(key, history.joined(separator: "|"))
     }
 
     private func GetPrevious(key: String) -> String?

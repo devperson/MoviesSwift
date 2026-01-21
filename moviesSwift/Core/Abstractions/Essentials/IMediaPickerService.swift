@@ -2,8 +2,8 @@ import Foundation
 
 protocol IMediaPickerService
 {
-    func GetPhotoAsync(options: MediaOptions) async -> MediaFile?
-    func TakePhotoAsync(options: MediaOptions) async -> MediaFile?
+    func GetPhotoAsync(options: MediaOptions) async throws -> MediaFile?
+    func TakePhotoAsync(options: MediaOptions) async throws-> MediaFile?
 }
 
 enum MediaSource

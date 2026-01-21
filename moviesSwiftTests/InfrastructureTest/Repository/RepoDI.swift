@@ -7,7 +7,10 @@ class RepoDi: XCTestCase
 {
     override func setUpWithError() throws
     {
-        Resolver.RegisterTypes()
+        Resolver.RegisterRepoTypes()
+        
+        let dbInitilizer: ILocalDbInitilizer = ContainerLocator.Resolve()
+        try! dbInitilizer.InitDb()
     }
 
     override func tearDownWithError() throws
@@ -18,9 +21,10 @@ class RepoDi: XCTestCase
 
 extension Resolver
 {
-    static func RegisterTypes()
+    static func RegisterRepoTypes()
     {
-        register { MockLogger() as ILoggingService }.scope(.application)
+        register { CustomAppLogging() as ILoggingService }.scope(.application)
+        register { iOSDirectoryService() as IDirectoryService }.scope(.application)
         register { DbInitializer() as ILocalDbInitilizer }.scope(.application)
         register { RepoMovieMapper() as any IRepoMapper<Movie, MovieTb> }.scope(.application)
         register { MovieRepository() as any IRepository<Movie> }.scope(.application)

@@ -12,7 +12,7 @@ enum SnackbarColors
     static var SuccessColor: XfColor = XfColor.FromHex("#FFCDFFCD")
     static var SuccessTextColor: XfColor = XfColor.FromHex("#FF114338")
 
-    static func backgroundColor(for severity: SeverityType) -> XfColor
+    static func GetBackgroundColor(for severity: SeverityType) -> XfColor
     {
         switch severity
         {
@@ -25,7 +25,7 @@ enum SnackbarColors
         }
     }
 
-    static func textColor(for severity: SeverityType) -> XfColor
+    static func GetTextColor(for severity: SeverityType) -> XfColor
     {
         switch severity
         {
@@ -39,15 +39,3 @@ enum SnackbarColors
     }
 }
 
-extension SeverityType
-{
-    func GetBackgroundColor() -> XfColor
-    {
-        return SnackbarColors.backgroundColor(for: self)
-    }
-
-    func GetTextColor() -> XfColor
-    {
-        return SnackbarColors.textColor(for: self)
-    }
-}

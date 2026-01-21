@@ -8,16 +8,16 @@ class AsyncCommand
     let doubleClickChecker: ClickUtil = ClickUtil()
     let CanExecuteChanged: BaseEvent = BaseEvent()
 
-    private let executeFunc: (Any?) async -> Void
+    private let executeFunc: @MainActor (Any?) async -> Void
     private let canExecuteFunc: ((Any?) -> Bool)?
 
-    init( _ executeFunc: @escaping (Any?) async -> Void, canExecuteFunc: ((Any?) -> Bool)? = { _ in
-        true
-    })
+    init(_ executeFunc: @escaping @MainActor (Any?) async -> Void,
+        canExecuteFunc: ((Any?) -> Bool)? = { _ in true })
     {
         self.executeFunc = executeFunc
         self.canExecuteFunc = canExecuteFunc
     }
+
 
     func CanExecute(_ param: Any?) -> Bool
     {
@@ -30,7 +30,9 @@ class AsyncCommand
         {
             if !doubleClickChecker.isOneClick()
             {
-                AsyncCommand.loggingService?.LogWarning("AsyncCommand.ExecuteAsync() is ignored because it is not permitted to execute second click within ${ClickUtil.OneClickDelay}mls")
+                let warning = "AsyncCommand.ExecuteAsync() is ignored because it is not permitted to execute second click within ${ClickUtil.OneClickDelay}mls"
+                AsyncCommand.loggingService?.LogWarning(warning)
+                print(warning)
                 return
             }
         }

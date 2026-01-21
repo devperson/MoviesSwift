@@ -1,25 +1,21 @@
 import Foundation
 import Resolver
+import Observation
 
-@objcMembers class MoviesPageViewModel: AppPageViewModel
+class MoviesPageViewModel: AppPageViewModel
 {
-    let TAG: String = "MoviesPageViewModel:"
-    static let SELECTED_ITEM = "SELECTED_ITEM"
-
-    @LazyInjected var appLogExporter: IAppLogExporter
-    @LazyInjected var movieService: IMovieService
-    @LazyInjected var infrastructureServices: IInfrastructureServices
-
-    var movieCellUpdatedEvent: MovieCellItemUpdatedEvent!
-    var authErrorEvent: AuthErrorEvent!
-
-    var MenuTappedCommand: AsyncCommand!
-    var AddCommand: AsyncCommand!
-    var ItemTappedCommand: AsyncCommand!
-    var MovieItems: [MovieItemViewModel] = []
-
-    let semaphoreAsync = AsyncSemaphore(value: 1)
-    var loggingOut: Bool = false
+    //constants
+    public static let SELECTED_ITEM = "SELECTED_ITEM"
+    //private fields
+    private let TAG: String = "MoviesPageViewModel:"
+    private var movieCellUpdatedEvent: MovieCellItemUpdatedEvent!
+    private var authErrorEvent: AuthErrorEvent!
+    private let semaphoreAsync = AsyncSemaphore(value: 1)
+    private var loggingOut: Bool = false
+    @LazyInjected private var appLogExporter: IAppLogExporter
+    @LazyInjected private var movieService: IMovieService
+    @LazyInjected private var infrastructureServices: IInfrastructureServices
+    @LazyInjected private var deviceThreads: IDeviceThreadService
 
     override init(_ injectedService: PageInjectedServices)
     {
@@ -34,6 +30,13 @@ import Resolver
         movieCellUpdatedEvent.Subscribe(InstanceId, OnMovieCellItemUpdatedEvent)
         authErrorEvent.Subscribe(InstanceId, HandleAuthErrorEvent)
     }
+    //Bindable
+    @Published var MovieItems: [MovieItemViewModel] = []
+    //Commands
+    var MenuTappedCommand: AsyncCommand!
+    var AddCommand: AsyncCommand!
+    var ItemTappedCommand: AsyncCommand!
+    
 
     override func Initialize(_ parameters: INavigationParameters)
     {
@@ -64,7 +67,15 @@ import Resolver
         else if parameters.ContainsKey(AddEditMoviePageViewModel.REMOVE_ITEM)
         {
             let removedItem: MovieItemViewModel = GetParameter(parameters, key: AddEditMoviePageViewModel.REMOVE_ITEM)!
-            MovieItems.removeAll(where: { $0.Id == removedItem.Id })
+            Task
+            {
+                try! await Task.Delay(milSeconds: 400) //delay so use can see the remove animation
+                await deviceThreads.RunOnMainThreadWithAnimationAsync 
+                {
+                    self.MovieItems.removeAll(where: { $0.Id == removedItem.Id })
+                }
+            }
+            
         }
     }
 
@@ -116,28 +127,35 @@ import Resolver
 
     func OnMenuTappedCommand(_ arg: Any?) async
     {
-        LogMethodStart(#function, arg)
-        guard let item = arg as? MenuItem
-        else
+        do
         {
-            return
-        }
-        if item.ItemType == .ShareLogs
-        {
-            let res = await appLogExporter.ShareLogs()
-            if !res.Success
+            LogMethodStart(#function, arg)
+            guard let item = arg as? MenuItem
+            else
             {
-                let error = res.Exception?.localizedDescription
-                injectedServices.SnackBarService.ShowError("Share file failed. \(error ?? "")")
+                return
+            }
+            if item.ItemType == .ShareLogs
+            {
+                let res = try await appLogExporter.ShareLogs()
+                if !res.Success
+                {
+                    let error = res.Exception?.localizedDescription
+                    injectedServices.SnackBarService.ShowError("Share file failed. \(error ?? "")")
+                }
+            }
+            else if item.ItemType == .Logout
+            {
+                let confirmed = try await Services.AlertDialogService.ConfirmAlert(title: "Confirm Action", message: "Are you sure want to log out?", buttons: ["Yes", "No"])
+                if confirmed
+                {
+                    await Navigate("/\(NameOf(LoginPageViewModel.self))", NavigationParameters())
+                }
             }
         }
-        else if item.ItemType == .Logout
+        catch
         {
-            let confirmed = await Services.AlertDialogService.ConfirmAlert(title: "Confirm Action", message: "Are you sure want to log out?", buttons: ["Yes", "No"])
-            if confirmed
-            {
-                await Navigate("/\(NameOf(LoginPageViewModel.self))", NavigationParameters())
-            }
+            Services.LoggingService.TrackError(error)
         }
     }
 

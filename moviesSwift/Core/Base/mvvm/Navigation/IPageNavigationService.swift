@@ -2,8 +2,8 @@ import Foundation
 
 protocol IPageNavigationService
 {
-    func Navigate( _ name: String, parameters: INavigationParameters?, useModalNavigation: Bool, animated: Bool, wrapIntoNav: Bool) async
-    func NavigateToRoot(parameters: INavigationParameters?) async
+    func Navigate( _ name: String, parameters: INavigationParameters?, useModalNavigation: Bool, animated: Bool, wrapIntoNav: Bool) async throws
+    func NavigateToRoot(parameters: INavigationParameters?) async throws
 
     func GetCurrentPage() -> IPage?
     func GetCurrentPageModel() -> PageViewModel?
@@ -16,10 +16,12 @@ protocol IPageNavigationService
     }
 }
 
+
+
 extension IPageNavigationService
 {
-    func Navigate( _ name: String, parameters: INavigationParameters? = NavigationParameters(), useModalNavigation: Bool = false, animated: Bool = true, wrapIntoNav: Bool = false) async
+    func Navigate( _ name: String) async throws
     {
-        await self.Navigate(name, parameters: parameters, useModalNavigation: useModalNavigation, animated: animated, wrapIntoNav: wrapIntoNav)
+        try await Navigate(name, parameters: NavigationParameters(), useModalNavigation: false, animated: true, wrapIntoNav: false)
     }
 }

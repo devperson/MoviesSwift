@@ -4,7 +4,9 @@ import Resolver
 
 class DbInitializer: LoggableService, ILocalDbInitilizer
 {
-    private var realmConn: Realm?
+   
+    //private var realmConn: Realm?
+    private var config: Realm.Configuration?
     private var isInited: Bool = false
     @LazyInjected private var directoryService: IDirectoryService
 
@@ -18,27 +20,33 @@ class DbInitializer: LoggableService, ILocalDbInitilizer
         DbName = "AppDb\(DbExtenstion)"
     }
 
-    func InitDb() async throws
+    func InitDb() throws
     {
-        LogMethodStart(#function)
-        
-        guard !isInited else {
-            print("DbInitializer Init() skipped — already initialized")
-            return
-        }
+        guard !isInited else { return }
         isInited = true
         
-        let config = Realm.Configuration(
-            fileURL: URL(filePath: try GetDbPath()),
+        let path = try GetDbPath()
+        
+        // Do NOT create Realm here!
+        // Just save config.
+        config = Realm.Configuration(
+            fileURL: URL(fileURLWithPath: path),
             schemaVersion: 1,
-            objectTypes: [
-                MovieTb.self    // add all Realm Object types here
-            ]
-        )
-
-        realmConn = try Realm(configuration: config, queue: nil)
+            objectTypes: [MovieTb.self])
     }
-    
+
+    func GetDbConnection() throws -> Any
+    {
+        guard let config else
+        {
+            throw DbError("Database is not initialized.")
+        }        
+        // ALWAYS create a fresh instance
+        //https://stackoverflow.com/questions/41781775/realm-accessed-from-incorrect-thread-again
+        return try Realm(configuration: config)
+    }
+
+   
     func GetDbDir() throws -> String
     {
         LogMethodStart(#function)
@@ -66,35 +74,20 @@ class DbInitializer: LoggableService, ILocalDbInitilizer
         return url.path()
     }
 
-    // MARK: - Get Connection
-
-    func GetDbConnection() throws -> Any
+    func Release(closeConnection: Bool)
     {
-        LogMethodStart(#function)
-        
-        guard let realmConn else
-        {
-            throw DbError.failed("DbInitializer: Database connection is not initialized.")
-        }
-        return realmConn
-    }
-
-  
-    func Release(closeConnection: Bool) async
-    {
-        LogMethodStart(#function)
-        
         isInited = false
-
-        if closeConnection
-        {
-            realmConn = nil    // RealmSwift cannot be explicitly closed
-        }
+        config = nil
     }
 }
 
-enum DbError: Error
+class DbError: AppException
 {
-    case notInitialized
-    case failed(String)
+    
 }
+
+//enum DbError: Error
+//{
+//    case notInitialized
+//    case failed(String)
+//}

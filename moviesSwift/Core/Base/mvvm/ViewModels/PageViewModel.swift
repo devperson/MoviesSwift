@@ -1,13 +1,12 @@
 import Foundation
 import Resolver
+import Observation
 
-@Observable
 class PageViewModel: NavigatingBaseViewModel, IPageLifecycleAware
 {
-    
     private var appResumedEvent: AppResumedEvent!
     private var appPausedEvent: AppPausedEvent!
-
+    
     override init(_ injectedService: InjectedService)
     {
         super.init(injectedService)
@@ -19,14 +18,33 @@ class PageViewModel: NavigatingBaseViewModel, IPageLifecycleAware
         appPausedEvent.Subscribe(InstanceId, PausedToBackground(_:))
     }
 
+    //Observable proerties
+    @Published var Title: String = ""
+    @Published var busyIndicator = false
+    var BusyLoading: Bool
+    {
+        get { busyIndicator }
+        set
+        {
+            busyIndicator = newValue
+            if(busyIndicator)
+            {
+                injectedServices.BusyIndicatorService.Show(BusyText)
+            }
+            else
+            {
+                injectedServices.BusyIndicatorService.Close()
+            }
+        }
+    }
+    //Internal properties
     var InstanceId = UUID()
-    var BackCommand: AsyncCommand!
-    var Title: String = ""
     var IsPageVisable: Bool = false
     var IsFirstTimeAppears: Bool = true
-    var BusyLoading: Bool = false
+    var BusyText: String = "Loading..."
     var DisableDeviceBackButton: Bool = false
-
+    //Commands
+    var BackCommand: AsyncCommand!
 
     func OnAppearing()
     {
@@ -45,7 +63,7 @@ class PageViewModel: NavigatingBaseViewModel, IPageLifecycleAware
         LogVirtualBaseMethod(#function)
     }
 
-    fileprivate func OnFirstTimeAppears()
+    func OnFirstTimeAppears()
     {
         LogVirtualBaseMethod(#function)
     }

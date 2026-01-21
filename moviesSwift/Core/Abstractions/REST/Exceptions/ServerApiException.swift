@@ -1,11 +1,6 @@
 import Foundation
 
-struct ServerApiException: IException
+class ServerApiException: AppException
 {
-    let Message: String
-
-    init(_ message: String)
-    {
-        self.Message = message
-    }
+    
 }

@@ -1,14 +1,13 @@
 import Foundation
 
-struct HttpRequestException: IException
+class HttpRequestException: AppException
 {
-    let Message: String
     let StatusCode: Int
 
     init(statusCode: Int, message: String)
     {
-        self.Message = message
         self.StatusCode = statusCode
+        super.init(message, cause: nil)
     }
 }
 

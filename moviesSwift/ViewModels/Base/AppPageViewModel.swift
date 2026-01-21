@@ -2,9 +2,6 @@ import Foundation
 
 class AppPageViewModel: PageViewModel
 {
-    var RefreshCommand: AsyncCommand!
-    var Services: PageInjectedServices
-
     init(_ injectedService: PageInjectedServices)
     {
         self.Services = injectedService
@@ -14,7 +11,11 @@ class AppPageViewModel: PageViewModel
         self.RefreshCommand = AsyncCommand(OnRefreshCommand)
     }
 
-    var IsRefreshing: Bool = false
+    @Published var IsRefreshing: Bool = false
+    //Internal properties
+    var Services: PageInjectedServices
+    //Commands
+    var RefreshCommand: AsyncCommand!
 
     // Protected-style method; in Swift use internal and async
     func OnRefreshCommand(_ arg: Any?) async

@@ -2,7 +2,7 @@ import Foundation
 
 protocol IAppLogExporter
 {
-    func ShareLogs() async -> LogSharingResult
+    func ShareLogs() async throws -> LogSharingResult
 }
 
 public struct LogSharingResult

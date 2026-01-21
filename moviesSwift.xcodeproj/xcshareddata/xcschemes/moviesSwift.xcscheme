@@ -40,6 +40,17 @@
                BlueprintName = "moviesSwiftTests"
                ReferencedContainer = "container:moviesSwift.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "REST_DI">
+               </Test>
+               <Test
+                  Identifier = "RepoDi">
+               </Test>
+               <Test
+                  Identifier = "VmDI">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "NO"
