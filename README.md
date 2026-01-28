@@ -9,9 +9,6 @@ This repository reflects my approach to designing **robust, testable, and scalab
 💼 Upwork: https://www.upwork.com/freelancers/khasanr  
 🔗 LinkedIn: https://www.linkedin.com/in/khasan-rakhimov-18021471/
 
-**Available for hire:**  
-💼 Upwork: https://www.upwork.com/freelancers/khasanr
-
 ---
 
 ## Project Overview – MoviesDemo (Swift / SwiftUI)
