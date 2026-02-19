@@ -44,7 +44,7 @@ The demo shows how:
 
 ## Application Overview
 
-This demo mobile application targets **iOS** and **Android** using **.NET Native iOS/Android**.
+This demo mobile application targets **iOS** using swift**.
 - **Swift** for service and business layers
 - **SwiftUI** for UI rendering
 - **NavigationStack** for navigation
