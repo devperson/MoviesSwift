@@ -13,7 +13,7 @@ This repository reflects my approach to designing **robust, testable, and scalab
 
 ## Project Overview – MoviesDemo (Swift / SwiftUI)
 
-The application demonstrates how to build a **native iOS application** using **Swift & SwiftUI**, while applying proven architectural patterns such as **MVVM**, **ViewModel-driven navigation**, **Domain-Driven Design (DDD)**, and **Dependency Injection (DI)**. Additionally, each application layer is instrumented with logging across UI, ViewModel, Service, and Domain layers, which improves maintainability and long-term support.
+The application demonstrates how to build a **native iOS application** using **Swift & SwiftUI**, while applying proven architectural patterns such as **MVVM**, **ViewModel-driven navigation**, **Clean Archtecture Principle**, and **Dependency Injection (DI)**. Additionally, each application layer is instrumented with logging across UI, ViewModel, Service, and Domain layers, which improves maintainability and long-term support.
 
 The demo shows how:
 - A **SwiftUI** application with a clean **MVVM** architecture
